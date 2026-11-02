@@ -1,0 +1,1224 @@
+[
+  {
+    "id": "nvidia-rtx-5090",
+    "vendor": "nvidia",
+    "series": "GeForce RTX 50",
+    "name": "RTX 5090",
+    "vramGb": [
+      32
+    ],
+    "bandwidthGbs": 1792,
+    "tdpW": 575,
+    "formFactor": "desktop",
+    "matchKeys": [
+      "rtx 5090"
+    ],
+    "isModded": false,
+    "source": "brief"
+  },
+  {
+    "id": "nvidia-rtx-5080",
+    "vendor": "nvidia",
+    "series": "GeForce RTX 50",
+    "name": "RTX 5080",
+    "vramGb": [
+      16
+    ],
+    "bandwidthGbs": 960,
+    "tdpW": 360,
+    "formFactor": "desktop",
+    "matchKeys": [
+      "rtx 5080"
+    ],
+    "isModded": false,
+    "source": "brief"
+  },
+  {
+    "id": "nvidia-rtx-5070-ti",
+    "vendor": "nvidia",
+    "series": "GeForce RTX 50",
+    "name": "RTX 5070 Ti",
+    "vramGb": [
+      16
+    ],
+    "bandwidthGbs": 896,
+    "tdpW": 300,
+    "formFactor": "desktop",
+    "matchKeys": [
+      "rtx 5070 ti"
+    ],
+    "isModded": false,
+    "source": "brief"
+  },
+  {
+    "id": "nvidia-rtx-5070",
+    "vendor": "nvidia",
+    "series": "GeForce RTX 50",
+    "name": "RTX 5070",
+    "vramGb": [
+      12
+    ],
+    "bandwidthGbs": 672,
+    "tdpW": 250,
+    "formFactor": "desktop",
+    "matchKeys": [
+      "rtx 5070"
+    ],
+    "isModded": false,
+    "source": "brief"
+  },
+  {
+    "id": "nvidia-rtx-5060-ti",
+    "vendor": "nvidia",
+    "series": "GeForce RTX 50",
+    "name": "RTX 5060 Ti",
+    "vramGb": [
+      16,
+      8
+    ],
+    "bandwidthGbs": 448,
+    "tdpW": 180,
+    "formFactor": "desktop",
+    "matchKeys": [
+      "rtx 5060 ti"
+    ],
+    "isModded": false,
+    "source": "brief"
+  },
+  {
+    "id": "nvidia-rtx-5060",
+    "vendor": "nvidia",
+    "series": "GeForce RTX 50",
+    "name": "RTX 5060",
+    "vramGb": [
+      8
+    ],
+    "bandwidthGbs": 448,
+    "tdpW": 145,
+    "formFactor": "desktop",
+    "matchKeys": [
+      "rtx 5060"
+    ],
+    "isModded": false,
+    "source": "brief"
+  },
+  {
+    "id": "nvidia-rtx-5050",
+    "vendor": "nvidia",
+    "series": "GeForce RTX 50",
+    "name": "RTX 5050",
+    "vramGb": [
+      8
+    ],
+    "bandwidthGbs": 320,
+    "tdpW": 130,
+    "formFactor": "desktop",
+    "matchKeys": [
+      "rtx 5050"
+    ],
+    "isModded": false,
+    "source": "estimated"
+  },
+  {
+    "id": "nvidia-rtx-4090",
+    "vendor": "nvidia",
+    "series": "GeForce RTX 40",
+    "name": "RTX 4090",
+    "vramGb": [
+      24
+    ],
+    "bandwidthGbs": 1008,
+    "tdpW": 450,
+    "formFactor": "desktop",
+    "matchKeys": [
+      "rtx 4090"
+    ],
+    "isModded": false,
+    "source": "brief"
+  },
+  {
+    "id": "nvidia-rtx-4080-super",
+    "vendor": "nvidia",
+    "series": "GeForce RTX 40",
+    "name": "RTX 4080 Super",
+    "vramGb": [
+      16
+    ],
+    "bandwidthGbs": 736,
+    "tdpW": 320,
+    "formFactor": "desktop",
+    "matchKeys": [
+      "rtx 4080 super"
+    ],
+    "isModded": false,
+    "source": "brief"
+  },
+  {
+    "id": "nvidia-rtx-4080",
+    "vendor": "nvidia",
+    "series": "GeForce RTX 40",
+    "name": "RTX 4080",
+    "vramGb": [
+      16
+    ],
+    "bandwidthGbs": 717,
+    "tdpW": 320,
+    "formFactor": "desktop",
+    "matchKeys": [
+      "rtx 4080"
+    ],
+    "isModded": false,
+    "source": "brief"
+  },
+  {
+    "id": "nvidia-rtx-4070-ti-super",
+    "vendor": "nvidia",
+    "series": "GeForce RTX 40",
+    "name": "RTX 4070 Ti Super",
+    "vramGb": [
+      16
+    ],
+    "bandwidthGbs": 672,
+    "tdpW": 285,
+    "formFactor": "desktop",
+    "matchKeys": [
+      "rtx 4070 ti super"
+    ],
+    "isModded": false,
+    "source": "brief"
+  },
+  {
+    "id": "nvidia-rtx-4070-ti",
+    "vendor": "nvidia",
+    "series": "GeForce RTX 40",
+    "name": "RTX 4070 Ti",
+    "vramGb": [
+      12
+    ],
+    "bandwidthGbs": 504,
+    "tdpW": 285,
+    "formFactor": "desktop",
+    "matchKeys": [
+      "rtx 4070 ti"
+    ],
+    "isModded": false,
+    "source": "brief"
+  },
+  {
+    "id": "nvidia-rtx-4070-super",
+    "vendor": "nvidia",
+    "series": "GeForce RTX 40",
+    "name": "RTX 4070 Super",
+    "vramGb": [
+      12
+    ],
+    "bandwidthGbs": 504,
+    "tdpW": 220,
+    "formFactor": "desktop",
+    "matchKeys": [
+      "rtx 4070 super"
+    ],
+    "isModded": false,
+    "source": "brief"
+  },
+  {
+    "id": "nvidia-rtx-4070",
+    "vendor": "nvidia",
+    "series": "GeForce RTX 40",
+    "name": "RTX 4070",
+    "vramGb": [
+      12
+    ],
+    "bandwidthGbs": 504,
+    "tdpW": 200,
+    "formFactor": "desktop",
+    "matchKeys": [
+      "rtx 4070"
+    ],
+    "isModded": false,
+    "source": "brief"
+  },
+  {
+    "id": "nvidia-rtx-4060-ti",
+    "vendor": "nvidia",
+    "series": "GeForce RTX 40",
+    "name": "RTX 4060 Ti",
+    "vramGb": [
+      16,
+      8
+    ],
+    "bandwidthGbs": 288,
+    "tdpW": 160,
+    "formFactor": "desktop",
+    "matchKeys": [
+      "rtx 4060 ti"
+    ],
+    "isModded": false,
+    "source": "brief"
+  },
+  {
+    "id": "nvidia-rtx-4060",
+    "vendor": "nvidia",
+    "series": "GeForce RTX 40",
+    "name": "RTX 4060",
+    "vramGb": [
+      8
+    ],
+    "bandwidthGbs": 272,
+    "tdpW": 115,
+    "formFactor": "desktop",
+    "matchKeys": [
+      "rtx 4060"
+    ],
+    "isModded": false,
+    "source": "brief"
+  },
+  {
+    "id": "nvidia-rtx-3090-ti",
+    "vendor": "nvidia",
+    "series": "GeForce RTX 30",
+    "name": "RTX 3090 Ti",
+    "vramGb": [
+      24
+    ],
+    "bandwidthGbs": 1008,
+    "tdpW": 450,
+    "formFactor": "desktop",
+    "matchKeys": [
+      "rtx 3090 ti"
+    ],
+    "isModded": false,
+    "source": "brief"
+  },
+  {
+    "id": "nvidia-rtx-3090",
+    "vendor": "nvidia",
+    "series": "GeForce RTX 30",
+    "name": "RTX 3090",
+    "vramGb": [
+      24
+    ],
+    "bandwidthGbs": 936,
+    "tdpW": 350,
+    "formFactor": "desktop",
+    "matchKeys": [
+      "rtx 3090"
+    ],
+    "isModded": false,
+    "source": "brief"
+  },
+  {
+    "id": "nvidia-rtx-3080-ti",
+    "vendor": "nvidia",
+    "series": "GeForce RTX 30",
+    "name": "RTX 3080 Ti",
+    "vramGb": [
+      12
+    ],
+    "bandwidthGbs": 912,
+    "tdpW": 350,
+    "formFactor": "desktop",
+    "matchKeys": [
+      "rtx 3080 ti"
+    ],
+    "isModded": false,
+    "source": "estimated"
+  },
+  {
+    "id": "nvidia-rtx-3080-12-gb",
+    "vendor": "nvidia",
+    "series": "GeForce RTX 30",
+    "name": "RTX 3080 (12 GB)",
+    "vramGb": [
+      12
+    ],
+    "bandwidthGbs": 912,
+    "tdpW": 350,
+    "formFactor": "desktop",
+    "matchKeys": [
+      "rtx 3080"
+    ],
+    "isModded": false,
+    "source": "brief"
+  },
+  {
+    "id": "nvidia-rtx-3080-10-gb",
+    "vendor": "nvidia",
+    "series": "GeForce RTX 30",
+    "name": "RTX 3080 (10 GB)",
+    "vramGb": [
+      10
+    ],
+    "bandwidthGbs": 760,
+    "tdpW": 320,
+    "formFactor": "desktop",
+    "matchKeys": [
+      "rtx 3080"
+    ],
+    "isModded": false,
+    "source": "brief"
+  },
+  {
+    "id": "nvidia-rtx-3070-ti",
+    "vendor": "nvidia",
+    "series": "GeForce RTX 30",
+    "name": "RTX 3070 Ti",
+    "vramGb": [
+      8
+    ],
+    "bandwidthGbs": 608,
+    "tdpW": 290,
+    "formFactor": "desktop",
+    "matchKeys": [
+      "rtx 3070 ti"
+    ],
+    "isModded": false,
+    "source": "estimated"
+  },
+  {
+    "id": "nvidia-rtx-3070",
+    "vendor": "nvidia",
+    "series": "GeForce RTX 30",
+    "name": "RTX 3070",
+    "vramGb": [
+      8
+    ],
+    "bandwidthGbs": 448,
+    "tdpW": 220,
+    "formFactor": "desktop",
+    "matchKeys": [
+      "rtx 3070"
+    ],
+    "isModded": false,
+    "source": "estimated"
+  },
+  {
+    "id": "nvidia-rtx-3060-ti",
+    "vendor": "nvidia",
+    "series": "GeForce RTX 30",
+    "name": "RTX 3060 Ti",
+    "vramGb": [
+      8
+    ],
+    "bandwidthGbs": 448,
+    "tdpW": 200,
+    "formFactor": "desktop",
+    "matchKeys": [
+      "rtx 3060 ti"
+    ],
+    "isModded": false,
+    "source": "estimated"
+  },
+  {
+    "id": "nvidia-rtx-3060",
+    "vendor": "nvidia",
+    "series": "GeForce RTX 30",
+    "name": "RTX 3060",
+    "vramGb": [
+      12
+    ],
+    "bandwidthGbs": 360,
+    "tdpW": 170,
+    "formFactor": "desktop",
+    "matchKeys": [
+      "rtx 3060"
+    ],
+    "isModded": false,
+    "source": "brief"
+  },
+  {
+    "id": "nvidia-rtx-2080-ti",
+    "vendor": "nvidia",
+    "series": "GeForce RTX 20",
+    "name": "RTX 2080 Ti",
+    "vramGb": [
+      11
+    ],
+    "bandwidthGbs": 616,
+    "tdpW": 250,
+    "formFactor": "desktop",
+    "matchKeys": [
+      "rtx 2080 ti"
+    ],
+    "isModded": false,
+    "source": "brief"
+  },
+  {
+    "id": "nvidia-rtx-2080-super",
+    "vendor": "nvidia",
+    "series": "GeForce RTX 20",
+    "name": "RTX 2080 Super",
+    "vramGb": [
+      8
+    ],
+    "bandwidthGbs": 496,
+    "tdpW": 250,
+    "formFactor": "desktop",
+    "matchKeys": [
+      "rtx 2080 super"
+    ],
+    "isModded": false,
+    "source": "estimated"
+  },
+  {
+    "id": "nvidia-rtx-2080",
+    "vendor": "nvidia",
+    "series": "GeForce RTX 20",
+    "name": "RTX 2080",
+    "vramGb": [
+      8
+    ],
+    "bandwidthGbs": 448,
+    "tdpW": 215,
+    "formFactor": "desktop",
+    "matchKeys": [
+      "rtx 2080"
+    ],
+    "isModded": false,
+    "source": "estimated"
+  },
+  {
+    "id": "nvidia-rtx-2070-super",
+    "vendor": "nvidia",
+    "series": "GeForce RTX 20",
+    "name": "RTX 2070 Super",
+    "vramGb": [
+      8
+    ],
+    "bandwidthGbs": 448,
+    "tdpW": 215,
+    "formFactor": "desktop",
+    "matchKeys": [
+      "rtx 2070 super"
+    ],
+    "isModded": false,
+    "source": "estimated"
+  },
+  {
+    "id": "nvidia-rtx-2060",
+    "vendor": "nvidia",
+    "series": "GeForce RTX 20",
+    "name": "RTX 2060",
+    "vramGb": [
+      12,
+      6
+    ],
+    "bandwidthGbs": 336,
+    "tdpW": 160,
+    "formFactor": "desktop",
+    "matchKeys": [
+      "rtx 2060"
+    ],
+    "isModded": false,
+    "source": "estimated"
+  },
+  {
+    "id": "nvidia-gtx-1080-ti",
+    "vendor": "nvidia",
+    "series": "GeForce GTX 10",
+    "name": "GTX 1080 Ti",
+    "vramGb": [
+      11
+    ],
+    "bandwidthGbs": 484,
+    "tdpW": 250,
+    "formFactor": "desktop",
+    "matchKeys": [
+      "gtx 1080 ti"
+    ],
+    "isModded": false,
+    "source": "estimated"
+  },
+  {
+    "id": "nvidia-rtx-5090-laptop",
+    "vendor": "nvidia",
+    "series": "GeForce RTX laptop",
+    "name": "RTX 5090 Laptop",
+    "vramGb": [
+      24
+    ],
+    "bandwidthGbs": 896,
+    "tdpW": null,
+    "formFactor": "laptop",
+    "matchKeys": [
+      "rtx 5090 laptop"
+    ],
+    "isModded": false,
+    "source": "estimated"
+  },
+  {
+    "id": "nvidia-rtx-5080-laptop",
+    "vendor": "nvidia",
+    "series": "GeForce RTX laptop",
+    "name": "RTX 5080 Laptop",
+    "vramGb": [
+      16
+    ],
+    "bandwidthGbs": 896,
+    "tdpW": null,
+    "formFactor": "laptop",
+    "matchKeys": [
+      "rtx 5080 laptop"
+    ],
+    "isModded": false,
+    "source": "estimated"
+  },
+  {
+    "id": "nvidia-rtx-5070-ti-laptop",
+    "vendor": "nvidia",
+    "series": "GeForce RTX laptop",
+    "name": "RTX 5070 Ti Laptop",
+    "vramGb": [
+      12
+    ],
+    "bandwidthGbs": 672,
+    "tdpW": null,
+    "formFactor": "laptop",
+    "matchKeys": [
+      "rtx 5070 ti laptop"
+    ],
+    "isModded": false,
+    "source": "estimated"
+  },
+  {
+    "id": "nvidia-rtx-5070-laptop",
+    "vendor": "nvidia",
+    "series": "GeForce RTX laptop",
+    "name": "RTX 5070 Laptop",
+    "vramGb": [
+      8
+    ],
+    "bandwidthGbs": 384,
+    "tdpW": null,
+    "formFactor": "laptop",
+    "matchKeys": [
+      "rtx 5070 laptop"
+    ],
+    "isModded": false,
+    "source": "estimated"
+  },
+  {
+    "id": "nvidia-rtx-4090-laptop",
+    "vendor": "nvidia",
+    "series": "GeForce RTX laptop",
+    "name": "RTX 4090 Laptop",
+    "vramGb": [
+      16
+    ],
+    "bandwidthGbs": 576,
+    "tdpW": null,
+    "formFactor": "laptop",
+    "matchKeys": [
+      "rtx 4090 laptop"
+    ],
+    "isModded": false,
+    "source": "estimated"
+  },
+  {
+    "id": "nvidia-rtx-4080-laptop",
+    "vendor": "nvidia",
+    "series": "GeForce RTX laptop",
+    "name": "RTX 4080 Laptop",
+    "vramGb": [
+      12
+    ],
+    "bandwidthGbs": 432,
+    "tdpW": null,
+    "formFactor": "laptop",
+    "matchKeys": [
+      "rtx 4080 laptop"
+    ],
+    "isModded": false,
+    "source": "estimated"
+  },
+  {
+    "id": "nvidia-rtx-4070-laptop",
+    "vendor": "nvidia",
+    "series": "GeForce RTX laptop",
+    "name": "RTX 4070 Laptop",
+    "vramGb": [
+      8
+    ],
+    "bandwidthGbs": 256,
+    "tdpW": null,
+    "formFactor": "laptop",
+    "matchKeys": [
+      "rtx 4070 laptop"
+    ],
+    "isModded": false,
+    "source": "estimated"
+  },
+  {
+    "id": "nvidia-rtx-4060-laptop",
+    "vendor": "nvidia",
+    "series": "GeForce RTX laptop",
+    "name": "RTX 4060 Laptop",
+    "vramGb": [
+      8
+    ],
+    "bandwidthGbs": 256,
+    "tdpW": null,
+    "formFactor": "laptop",
+    "matchKeys": [
+      "rtx 4060 laptop"
+    ],
+    "isModded": false,
+    "source": "estimated"
+  },
+  {
+    "id": "nvidia-rtx-3080-ti-laptop",
+    "vendor": "nvidia",
+    "series": "GeForce RTX laptop",
+    "name": "RTX 3080 Ti Laptop",
+    "vramGb": [
+      16
+    ],
+    "bandwidthGbs": 512,
+    "tdpW": null,
+    "formFactor": "laptop",
+    "matchKeys": [
+      "rtx 3080 ti laptop"
+    ],
+    "isModded": false,
+    "source": "estimated"
+  },
+  {
+    "id": "nvidia-rtx-pro-6000-blackwell",
+    "vendor": "nvidia",
+    "series": "Workstation",
+    "name": "RTX Pro 6000 Blackwell",
+    "vramGb": [
+      96
+    ],
+    "bandwidthGbs": 1792,
+    "tdpW": 600,
+    "formFactor": "workstation",
+    "matchKeys": [
+      "rtx pro 6000"
+    ],
+    "isModded": false,
+    "source": "brief"
+  },
+  {
+    "id": "nvidia-rtx-6000-ada",
+    "vendor": "nvidia",
+    "series": "Workstation",
+    "name": "RTX 6000 Ada",
+    "vramGb": [
+      48
+    ],
+    "bandwidthGbs": 960,
+    "tdpW": 300,
+    "formFactor": "workstation",
+    "matchKeys": [
+      "rtx 6000 ada"
+    ],
+    "isModded": false,
+    "source": "brief"
+  },
+  {
+    "id": "nvidia-rtx-5000-ada",
+    "vendor": "nvidia",
+    "series": "Workstation",
+    "name": "RTX 5000 Ada",
+    "vramGb": [
+      32
+    ],
+    "bandwidthGbs": 576,
+    "tdpW": 250,
+    "formFactor": "workstation",
+    "matchKeys": [
+      "rtx 5000 ada"
+    ],
+    "isModded": false,
+    "source": "estimated"
+  },
+  {
+    "id": "nvidia-rtx-4000-ada",
+    "vendor": "nvidia",
+    "series": "Workstation",
+    "name": "RTX 4000 Ada",
+    "vramGb": [
+      20
+    ],
+    "bandwidthGbs": 360,
+    "tdpW": 130,
+    "formFactor": "workstation",
+    "matchKeys": [
+      "rtx 4000 ada"
+    ],
+    "isModded": false,
+    "source": "estimated"
+  },
+  {
+    "id": "nvidia-rtx-a6000",
+    "vendor": "nvidia",
+    "series": "Workstation",
+    "name": "RTX A6000",
+    "vramGb": [
+      48
+    ],
+    "bandwidthGbs": 768,
+    "tdpW": 300,
+    "formFactor": "workstation",
+    "matchKeys": [
+      "rtx a6000"
+    ],
+    "isModded": false,
+    "source": "brief"
+  },
+  {
+    "id": "nvidia-l40s",
+    "vendor": "nvidia",
+    "series": "Datacenter",
+    "name": "L40S",
+    "vramGb": [
+      48
+    ],
+    "bandwidthGbs": 864,
+    "tdpW": 350,
+    "formFactor": "datacenter",
+    "matchKeys": [
+      "l40s"
+    ],
+    "isModded": false,
+    "source": "estimated"
+  },
+  {
+    "id": "nvidia-a100-80gb-pcie",
+    "vendor": "nvidia",
+    "series": "Datacenter",
+    "name": "A100 80GB PCIe",
+    "vramGb": [
+      80
+    ],
+    "bandwidthGbs": 1935,
+    "tdpW": 300,
+    "formFactor": "datacenter",
+    "matchKeys": [
+      "a100"
+    ],
+    "isModded": false,
+    "source": "estimated"
+  },
+  {
+    "id": "nvidia-h100-pcie",
+    "vendor": "nvidia",
+    "series": "Datacenter",
+    "name": "H100 PCIe",
+    "vramGb": [
+      80
+    ],
+    "bandwidthGbs": 2000,
+    "tdpW": 350,
+    "formFactor": "datacenter",
+    "matchKeys": [
+      "h100"
+    ],
+    "isModded": false,
+    "source": "estimated"
+  },
+  {
+    "id": "nvidia-rtx-4090-48-gb-modded",
+    "vendor": "nvidia",
+    "series": "Modded",
+    "name": "RTX 4090 48 GB (modded)",
+    "vramGb": [
+      48
+    ],
+    "bandwidthGbs": 1008,
+    "tdpW": 450,
+    "formFactor": "desktop",
+    "matchKeys": [],
+    "isModded": true,
+    "source": "brief"
+  },
+  {
+    "id": "nvidia-rtx-4080-32-gb-modded",
+    "vendor": "nvidia",
+    "series": "Modded",
+    "name": "RTX 4080 32 GB (modded)",
+    "vramGb": [
+      32
+    ],
+    "bandwidthGbs": 717,
+    "tdpW": 320,
+    "formFactor": "desktop",
+    "matchKeys": [],
+    "isModded": true,
+    "source": "brief"
+  },
+  {
+    "id": "nvidia-rtx-2080-ti-22-gb-modded",
+    "vendor": "nvidia",
+    "series": "Modded",
+    "name": "RTX 2080 Ti 22 GB (modded)",
+    "vramGb": [
+      22
+    ],
+    "bandwidthGbs": 616,
+    "tdpW": 250,
+    "formFactor": "desktop",
+    "matchKeys": [],
+    "isModded": true,
+    "source": "brief"
+  },
+  {
+    "id": "amd-rx-9070-xt",
+    "vendor": "amd",
+    "series": "Radeon RX 9000",
+    "name": "RX 9070 XT",
+    "vramGb": [
+      16
+    ],
+    "bandwidthGbs": 644.6,
+    "tdpW": 304,
+    "formFactor": "desktop",
+    "matchKeys": [
+      "rx 9070 xt"
+    ],
+    "isModded": false,
+    "source": "brief"
+  },
+  {
+    "id": "amd-rx-9070",
+    "vendor": "amd",
+    "series": "Radeon RX 9000",
+    "name": "RX 9070",
+    "vramGb": [
+      16
+    ],
+    "bandwidthGbs": 640,
+    "tdpW": 220,
+    "formFactor": "desktop",
+    "matchKeys": [
+      "rx 9070"
+    ],
+    "isModded": false,
+    "source": "brief"
+  },
+  {
+    "id": "amd-rx-9060-xt",
+    "vendor": "amd",
+    "series": "Radeon RX 9000",
+    "name": "RX 9060 XT",
+    "vramGb": [
+      16,
+      8
+    ],
+    "bandwidthGbs": 322,
+    "tdpW": 160,
+    "formFactor": "desktop",
+    "matchKeys": [
+      "rx 9060 xt"
+    ],
+    "isModded": false,
+    "source": "brief"
+  },
+  {
+    "id": "amd-radeon-ai-pro-r9700",
+    "vendor": "amd",
+    "series": "Radeon AI Pro",
+    "name": "Radeon AI Pro R9700",
+    "vramGb": [
+      32
+    ],
+    "bandwidthGbs": 644.6,
+    "tdpW": 300,
+    "formFactor": "workstation",
+    "matchKeys": [
+      "ai pro r9700"
+    ],
+    "isModded": false,
+    "source": "brief"
+  },
+  {
+    "id": "amd-rx-7900-xtx",
+    "vendor": "amd",
+    "series": "Radeon RX 7000",
+    "name": "RX 7900 XTX",
+    "vramGb": [
+      24
+    ],
+    "bandwidthGbs": 960,
+    "tdpW": 355,
+    "formFactor": "desktop",
+    "matchKeys": [
+      "rx 7900 xtx"
+    ],
+    "isModded": false,
+    "source": "brief"
+  },
+  {
+    "id": "amd-rx-7900-xt",
+    "vendor": "amd",
+    "series": "Radeon RX 7000",
+    "name": "RX 7900 XT",
+    "vramGb": [
+      20
+    ],
+    "bandwidthGbs": 800,
+    "tdpW": 315,
+    "formFactor": "desktop",
+    "matchKeys": [
+      "rx 7900 xt"
+    ],
+    "isModded": false,
+    "source": "brief"
+  },
+  {
+    "id": "amd-rx-7900-gre",
+    "vendor": "amd",
+    "series": "Radeon RX 7000",
+    "name": "RX 7900 GRE",
+    "vramGb": [
+      16
+    ],
+    "bandwidthGbs": 576,
+    "tdpW": 260,
+    "formFactor": "desktop",
+    "matchKeys": [
+      "rx 7900 gre"
+    ],
+    "isModded": false,
+    "source": "estimated"
+  },
+  {
+    "id": "amd-rx-7800-xt",
+    "vendor": "amd",
+    "series": "Radeon RX 7000",
+    "name": "RX 7800 XT",
+    "vramGb": [
+      16
+    ],
+    "bandwidthGbs": 624,
+    "tdpW": 263,
+    "formFactor": "desktop",
+    "matchKeys": [
+      "rx 7800 xt"
+    ],
+    "isModded": false,
+    "source": "brief"
+  },
+  {
+    "id": "amd-rx-7700-xt",
+    "vendor": "amd",
+    "series": "Radeon RX 7000",
+    "name": "RX 7700 XT",
+    "vramGb": [
+      12
+    ],
+    "bandwidthGbs": 432,
+    "tdpW": 245,
+    "formFactor": "desktop",
+    "matchKeys": [
+      "rx 7700 xt"
+    ],
+    "isModded": false,
+    "source": "estimated"
+  },
+  {
+    "id": "amd-rx-7600-xt",
+    "vendor": "amd",
+    "series": "Radeon RX 7000",
+    "name": "RX 7600 XT",
+    "vramGb": [
+      16
+    ],
+    "bandwidthGbs": 288,
+    "tdpW": 190,
+    "formFactor": "desktop",
+    "matchKeys": [
+      "rx 7600 xt"
+    ],
+    "isModded": false,
+    "source": "brief"
+  },
+  {
+    "id": "amd-rx-7600",
+    "vendor": "amd",
+    "series": "Radeon RX 7000",
+    "name": "RX 7600",
+    "vramGb": [
+      8
+    ],
+    "bandwidthGbs": 288,
+    "tdpW": 165,
+    "formFactor": "desktop",
+    "matchKeys": [
+      "rx 7600"
+    ],
+    "isModded": false,
+    "source": "estimated"
+  },
+  {
+    "id": "amd-rx-6950-xt",
+    "vendor": "amd",
+    "series": "Radeon RX 6000",
+    "name": "RX 6950 XT",
+    "vramGb": [
+      16
+    ],
+    "bandwidthGbs": 576,
+    "tdpW": 335,
+    "formFactor": "desktop",
+    "matchKeys": [
+      "rx 6950 xt"
+    ],
+    "isModded": false,
+    "source": "estimated"
+  },
+  {
+    "id": "amd-rx-6900-xt",
+    "vendor": "amd",
+    "series": "Radeon RX 6000",
+    "name": "RX 6900 XT",
+    "vramGb": [
+      16
+    ],
+    "bandwidthGbs": 512,
+    "tdpW": 300,
+    "formFactor": "desktop",
+    "matchKeys": [
+      "rx 6900 xt"
+    ],
+    "isModded": false,
+    "source": "estimated"
+  },
+  {
+    "id": "amd-rx-6800-xt",
+    "vendor": "amd",
+    "series": "Radeon RX 6000",
+    "name": "RX 6800 XT",
+    "vramGb": [
+      16
+    ],
+    "bandwidthGbs": 512,
+    "tdpW": 300,
+    "formFactor": "desktop",
+    "matchKeys": [
+      "rx 6800 xt"
+    ],
+    "isModded": false,
+    "source": "estimated"
+  },
+  {
+    "id": "amd-rx-6800",
+    "vendor": "amd",
+    "series": "Radeon RX 6000",
+    "name": "RX 6800",
+    "vramGb": [
+      16
+    ],
+    "bandwidthGbs": 512,
+    "tdpW": 250,
+    "formFactor": "desktop",
+    "matchKeys": [
+      "rx 6800"
+    ],
+    "isModded": false,
+    "source": "estimated"
+  },
+  {
+    "id": "amd-rx-6700-xt",
+    "vendor": "amd",
+    "series": "Radeon RX 6000",
+    "name": "RX 6700 XT",
+    "vramGb": [
+      12
+    ],
+    "bandwidthGbs": 384,
+    "tdpW": 230,
+    "formFactor": "desktop",
+    "matchKeys": [
+      "rx 6700 xt"
+    ],
+    "isModded": false,
+    "source": "estimated"
+  },
+  {
+    "id": "intel-arc-b580",
+    "vendor": "intel",
+    "series": "Arc B-series",
+    "name": "Arc B580",
+    "vramGb": [
+      12
+    ],
+    "bandwidthGbs": 456,
+    "tdpW": 190,
+    "formFactor": "desktop",
+    "matchKeys": [
+      "arc b580"
+    ],
+    "isModded": false,
+    "source": "brief"
+  },
+  {
+    "id": "intel-arc-b570",
+    "vendor": "intel",
+    "series": "Arc B-series",
+    "name": "Arc B570",
+    "vramGb": [
+      10
+    ],
+    "bandwidthGbs": 380,
+    "tdpW": 150,
+    "formFactor": "desktop",
+    "matchKeys": [
+      "arc b570"
+    ],
+    "isModded": false,
+    "source": "brief"
+  },
+  {
+    "id": "intel-arc-a770",
+    "vendor": "intel",
+    "series": "Arc A-series",
+    "name": "Arc A770",
+    "vramGb": [
+      16
+    ],
+    "bandwidthGbs": 560,
+    "tdpW": 225,
+    "formFactor": "desktop",
+    "matchKeys": [
+      "arc a770"
+    ],
+    "isModded": false,
+    "source": "brief"
+  },
+  {
+    "id": "intel-arc-a750",
+    "vendor": "intel",
+    "series": "Arc A-series",
+    "name": "Arc A750",
+    "vramGb": [
+      8
+    ],
+    "bandwidthGbs": 512,
+    "tdpW": 225,
+    "formFactor": "desktop",
+    "matchKeys": [
+      "arc a750"
+    ],
+    "isModded": false,
+    "source": "estimated"
+  },
+  {
+    "id": "intel-arc-pro-b60",
+    "vendor": "intel",
+    "series": "Arc Pro",
+    "name": "Arc Pro B60",
+    "vramGb": [
+      24
+    ],
+    "bandwidthGbs": 456,
+    "tdpW": 200,
+    "formFactor": "workstation",
+    "matchKeys": [
+      "arc pro b60"
+    ],
+    "isModded": false,
+    "source": "brief"
+  }
+]

@@ -1,0 +1,1556 @@
+[
+  {
+    "id": "gemma-4-e2b",
+    "name": "Gemma 4 E2B",
+    "lab": "Google",
+    "family": "Gemma 4",
+    "hfRepo": "google/gemma-4-E2B-it",
+    "totalParamsB": 5.1,
+    "activeParamsB": 2.3,
+    "arch": "dense",
+    "layers": 35,
+    "attention": {
+      "fullLayers": 7,
+      "slidingLayers": 28,
+      "window": 512,
+      "kvHeads": 2,
+      "headDim": 256
+    },
+    "archSource": "estimated",
+    "contextNative": 131072,
+    "license": "Apache 2.0",
+    "licenseClass": "permissive",
+    "modalities": [
+      "text",
+      "vision",
+      "audio"
+    ],
+    "useCases": [
+      "edge",
+      "chat",
+      "vision"
+    ],
+    "releaseDate": "2026-04",
+    "ollamaTag": null,
+    "mlxRepo": null,
+    "legacy": false,
+    "note": "2.3B effective parameters per token; per-layer embeddings can stay in system RAM.",
+    "verified": false
+  },
+  {
+    "id": "ministral-3-3b",
+    "name": "Ministral 3 3B",
+    "lab": "Mistral AI",
+    "family": "Ministral 3",
+    "hfRepo": "mistralai/Ministral-3-3B-Instruct-2512",
+    "totalParamsB": 3.8,
+    "activeParamsB": 3.8,
+    "arch": "dense",
+    "layers": 26,
+    "attention": {
+      "fullLayers": 26,
+      "slidingLayers": 0,
+      "kvHeads": 8,
+      "headDim": 128
+    },
+    "archSource": "estimated",
+    "contextNative": 262144,
+    "license": "Apache 2.0",
+    "licenseClass": "permissive",
+    "modalities": [
+      "text"
+    ],
+    "useCases": [
+      "edge",
+      "chat"
+    ],
+    "releaseDate": "2025-12",
+    "ollamaTag": null,
+    "mlxRepo": null,
+    "legacy": false,
+    "verified": false
+  },
+  {
+    "id": "gemma-4-e4b",
+    "name": "Gemma 4 E4B",
+    "lab": "Google",
+    "family": "Gemma 4",
+    "hfRepo": "google/gemma-4-E4B-it",
+    "totalParamsB": 8,
+    "activeParamsB": 4.5,
+    "arch": "dense",
+    "layers": 42,
+    "attention": {
+      "fullLayers": 7,
+      "slidingLayers": 35,
+      "window": 512,
+      "kvHeads": 2,
+      "headDim": 256
+    },
+    "archSource": "estimated",
+    "contextNative": 131072,
+    "license": "Apache 2.0",
+    "licenseClass": "permissive",
+    "modalities": [
+      "text",
+      "vision",
+      "audio"
+    ],
+    "useCases": [
+      "edge",
+      "chat",
+      "vision"
+    ],
+    "releaseDate": "2026-04",
+    "ollamaTag": null,
+    "mlxRepo": null,
+    "legacy": false,
+    "note": "4.5B effective parameters per token.",
+    "verified": false
+  },
+  {
+    "id": "llama-3.1-8b",
+    "name": "Llama 3.1 8B",
+    "lab": "Meta",
+    "family": "Llama 3",
+    "hfRepo": "meta-llama/Llama-3.1-8B-Instruct",
+    "totalParamsB": 8.03,
+    "activeParamsB": 8.03,
+    "arch": "dense",
+    "layers": 32,
+    "attention": {
+      "fullLayers": 32,
+      "slidingLayers": 0,
+      "kvHeads": 8,
+      "headDim": 128
+    },
+    "archSource": "config",
+    "contextNative": 131072,
+    "license": "Llama 3.1 Community",
+    "licenseClass": "restricted",
+    "modalities": [
+      "text"
+    ],
+    "useCases": [
+      "chat",
+      "writing"
+    ],
+    "releaseDate": "2024-07",
+    "ollamaTag": "llama3.1:8b",
+    "mlxRepo": "mlx-community/Meta-Llama-3.1-8B-Instruct-4bit",
+    "legacy": false,
+    "verified": false
+  },
+  {
+    "id": "qwen-3.5-9b",
+    "name": "Qwen 3.5 9B",
+    "lab": "Alibaba Qwen",
+    "family": "Qwen 3.5",
+    "hfRepo": "Qwen/Qwen3.5-9B",
+    "totalParamsB": 9.7,
+    "activeParamsB": 9.7,
+    "arch": "dense",
+    "layers": 32,
+    "attention": {
+      "fullLayers": 8,
+      "slidingLayers": 0,
+      "kvHeads": 4,
+      "headDim": 256
+    },
+    "archSource": "estimated",
+    "contextNative": 262144,
+    "license": "Apache 2.0",
+    "licenseClass": "permissive",
+    "modalities": [
+      "text",
+      "vision"
+    ],
+    "useCases": [
+      "chat",
+      "coding",
+      "reasoning",
+      "vision"
+    ],
+    "releaseDate": "2026-02",
+    "ollamaTag": null,
+    "mlxRepo": null,
+    "legacy": false,
+    "note": "Hybrid linear/full attention: only ~1 in 4 layers keeps a growing KV cache.",
+    "verified": false
+  },
+  {
+    "id": "gemma-4-12b",
+    "name": "Gemma 4 12B",
+    "lab": "Google",
+    "family": "Gemma 4",
+    "hfRepo": null,
+    "totalParamsB": 12,
+    "activeParamsB": 12,
+    "arch": "dense",
+    "layers": 48,
+    "attention": {
+      "fullLayers": 8,
+      "slidingLayers": 40,
+      "window": 1024,
+      "kvHeads": 8,
+      "headDim": 256
+    },
+    "archSource": "estimated",
+    "contextNative": 262144,
+    "license": "Apache 2.0",
+    "licenseClass": "permissive",
+    "modalities": [
+      "text",
+      "vision"
+    ],
+    "useCases": [
+      "chat",
+      "vision"
+    ],
+    "releaseDate": "2026-04",
+    "ollamaTag": null,
+    "mlxRepo": null,
+    "legacy": false,
+    "verified": false
+  },
+  {
+    "id": "phi-4",
+    "name": "Phi-4",
+    "lab": "Microsoft",
+    "family": "Phi",
+    "hfRepo": "microsoft/phi-4",
+    "totalParamsB": 14.7,
+    "activeParamsB": 14.7,
+    "arch": "dense",
+    "layers": 40,
+    "attention": {
+      "fullLayers": 40,
+      "slidingLayers": 0,
+      "kvHeads": 10,
+      "headDim": 128
+    },
+    "archSource": "config",
+    "contextNative": 16384,
+    "license": "MIT",
+    "licenseClass": "permissive",
+    "modalities": [
+      "text"
+    ],
+    "useCases": [
+      "reasoning"
+    ],
+    "releaseDate": "2024-12",
+    "ollamaTag": "phi4:14b",
+    "mlxRepo": "mlx-community/phi-4-4bit",
+    "legacy": false,
+    "note": "Short 16K context.",
+    "verified": false
+  },
+  {
+    "id": "gpt-oss-20b",
+    "name": "gpt-oss-20b",
+    "lab": "OpenAI",
+    "family": "gpt-oss",
+    "hfRepo": "openai/gpt-oss-20b",
+    "totalParamsB": 20.9,
+    "activeParamsB": 3.6,
+    "arch": "moe",
+    "layers": 24,
+    "attention": {
+      "fullLayers": 12,
+      "slidingLayers": 12,
+      "window": 128,
+      "kvHeads": 8,
+      "headDim": 64
+    },
+    "archSource": "config",
+    "contextNative": 131072,
+    "license": "Apache 2.0",
+    "licenseClass": "permissive",
+    "modalities": [
+      "text"
+    ],
+    "useCases": [
+      "reasoning",
+      "agents",
+      "coding"
+    ],
+    "releaseDate": "2025-08",
+    "ollamaTag": "gpt-oss:20b",
+    "mlxRepo": "mlx-community/gpt-oss-20b-MXFP4-Q8",
+    "legacy": false,
+    "note": "Ships natively in MXFP4 (~4.25 bits/weight), so Q4 is the native size.",
+    "verified": false
+  },
+  {
+    "id": "gemma-4-26b-a4b",
+    "name": "Gemma 4 26B A4B",
+    "lab": "Google",
+    "family": "Gemma 4",
+    "hfRepo": "google/gemma-4-26B-A4B-it",
+    "totalParamsB": 26,
+    "activeParamsB": 4,
+    "arch": "moe",
+    "layers": 30,
+    "attention": {
+      "fullLayers": 5,
+      "slidingLayers": 25,
+      "window": 1024,
+      "kvHeads": 8,
+      "headDim": 256
+    },
+    "archSource": "estimated",
+    "contextNative": 262144,
+    "license": "Apache 2.0",
+    "licenseClass": "permissive",
+    "modalities": [
+      "text",
+      "vision"
+    ],
+    "useCases": [
+      "chat",
+      "vision"
+    ],
+    "releaseDate": "2026-04",
+    "ollamaTag": null,
+    "mlxRepo": null,
+    "legacy": false,
+    "verified": false
+  },
+  {
+    "id": "qwen-3.8-27b",
+    "name": "Qwen 3.8 27B",
+    "lab": "Alibaba Qwen",
+    "family": "Qwen 3.8",
+    "hfRepo": null,
+    "totalParamsB": 27.8,
+    "activeParamsB": 27.8,
+    "arch": "dense",
+    "layers": 64,
+    "attention": {
+      "fullLayers": 16,
+      "slidingLayers": 0,
+      "kvHeads": 4,
+      "headDim": 256
+    },
+    "archSource": "estimated",
+    "contextNative": 262144,
+    "license": "Apache 2.0",
+    "licenseClass": "permissive",
+    "modalities": [
+      "text"
+    ],
+    "useCases": [
+      "coding",
+      "agents"
+    ],
+    "releaseDate": null,
+    "ollamaTag": null,
+    "mlxRepo": null,
+    "legacy": false,
+    "verified": false
+  },
+  {
+    "id": "granite-4.2-30b",
+    "name": "Granite 4.2 30B",
+    "lab": "IBM",
+    "family": "Granite 4",
+    "hfRepo": null,
+    "totalParamsB": 29.3,
+    "activeParamsB": 29.3,
+    "arch": "dense",
+    "layers": 64,
+    "attention": {
+      "fullLayers": 8,
+      "slidingLayers": 0,
+      "kvHeads": 8,
+      "headDim": 128
+    },
+    "archSource": "estimated",
+    "contextNative": 131072,
+    "license": "Apache 2.0",
+    "licenseClass": "permissive",
+    "modalities": [
+      "text"
+    ],
+    "useCases": [
+      "chat",
+      "long-context",
+      "agents"
+    ],
+    "releaseDate": null,
+    "ollamaTag": null,
+    "mlxRepo": null,
+    "legacy": false,
+    "note": "Hybrid Mamba/attention; aimed at business and RAG workloads.",
+    "verified": false
+  },
+  {
+    "id": "nemotron-3.5-lightning",
+    "name": "Nemotron 3.5 Lightning",
+    "lab": "NVIDIA",
+    "family": "Nemotron 3",
+    "hfRepo": null,
+    "totalParamsB": 30,
+    "activeParamsB": 3,
+    "arch": "moe",
+    "layers": 52,
+    "attention": {
+      "fullLayers": 6,
+      "slidingLayers": 0,
+      "kvHeads": 2,
+      "headDim": 128
+    },
+    "archSource": "estimated",
+    "contextNative": 1048576,
+    "license": "OpenMDW",
+    "licenseClass": "permissive",
+    "modalities": [
+      "text"
+    ],
+    "useCases": [
+      "long-context",
+      "chat",
+      "agents"
+    ],
+    "releaseDate": null,
+    "ollamaTag": null,
+    "mlxRepo": null,
+    "legacy": false,
+    "note": "Hybrid Mamba/attention MoE; very small KV cache for its 1M context.",
+    "verified": false
+  },
+  {
+    "id": "gemma-4-31b",
+    "name": "Gemma 4 31B",
+    "lab": "Google",
+    "family": "Gemma 4",
+    "hfRepo": "google/gemma-4-31B-it",
+    "totalParamsB": 31,
+    "activeParamsB": 31,
+    "arch": "dense",
+    "layers": 60,
+    "attention": {
+      "fullLayers": 10,
+      "slidingLayers": 50,
+      "window": 1024,
+      "kvHeads": 16,
+      "headDim": 128
+    },
+    "archSource": "estimated",
+    "contextNative": 262144,
+    "license": "Apache 2.0",
+    "licenseClass": "permissive",
+    "modalities": [
+      "text",
+      "vision"
+    ],
+    "useCases": [
+      "chat",
+      "vision",
+      "writing"
+    ],
+    "releaseDate": "2026-04",
+    "ollamaTag": null,
+    "mlxRepo": null,
+    "legacy": false,
+    "verified": false
+  },
+  {
+    "id": "qwen-3.6-35b-a3b",
+    "name": "Qwen 3.6 35B-A3B",
+    "lab": "Alibaba Qwen",
+    "family": "Qwen 3.6",
+    "hfRepo": null,
+    "totalParamsB": 36,
+    "activeParamsB": 3,
+    "arch": "moe",
+    "layers": 40,
+    "attention": {
+      "fullLayers": 10,
+      "slidingLayers": 0,
+      "kvHeads": 2,
+      "headDim": 256
+    },
+    "archSource": "estimated",
+    "contextNative": 262144,
+    "license": "Apache 2.0",
+    "licenseClass": "permissive",
+    "modalities": [
+      "text"
+    ],
+    "useCases": [
+      "coding",
+      "agents"
+    ],
+    "releaseDate": null,
+    "ollamaTag": null,
+    "mlxRepo": null,
+    "legacy": false,
+    "verified": false
+  },
+  {
+    "id": "hermes-4.3-36b",
+    "name": "Hermes 4.3 36B",
+    "lab": "Nous Research",
+    "family": "Hermes",
+    "hfRepo": "NousResearch/Hermes-4.3-36B",
+    "totalParamsB": 36.2,
+    "activeParamsB": 36.2,
+    "arch": "dense",
+    "layers": 64,
+    "attention": {
+      "fullLayers": 64,
+      "slidingLayers": 0,
+      "kvHeads": 8,
+      "headDim": 128
+    },
+    "archSource": "estimated",
+    "contextNative": 524288,
+    "license": "Apache 2.0",
+    "licenseClass": "permissive",
+    "modalities": [
+      "text"
+    ],
+    "useCases": [
+      "chat",
+      "writing",
+      "long-context"
+    ],
+    "releaseDate": null,
+    "ollamaTag": null,
+    "mlxRepo": null,
+    "legacy": false,
+    "note": "Built on ByteDance Seed-OSS-36B.",
+    "verified": false
+  },
+  {
+    "id": "llama-3.3-70b",
+    "name": "Llama 3.3 70B",
+    "lab": "Meta",
+    "family": "Llama 3",
+    "hfRepo": "meta-llama/Llama-3.3-70B-Instruct",
+    "totalParamsB": 70.6,
+    "activeParamsB": 70.6,
+    "arch": "dense",
+    "layers": 80,
+    "attention": {
+      "fullLayers": 80,
+      "slidingLayers": 0,
+      "kvHeads": 8,
+      "headDim": 128
+    },
+    "archSource": "config",
+    "contextNative": 131072,
+    "license": "Llama 3.3 Community",
+    "licenseClass": "restricted",
+    "modalities": [
+      "text"
+    ],
+    "useCases": [
+      "chat",
+      "writing"
+    ],
+    "releaseDate": "2024-12",
+    "ollamaTag": "llama3.3:70b",
+    "mlxRepo": "mlx-community/Llama-3.3-70B-Instruct-4bit",
+    "legacy": false,
+    "verified": false
+  },
+  {
+    "id": "llama-4-scout",
+    "name": "Llama 4 Scout",
+    "lab": "Meta",
+    "family": "Llama 4",
+    "hfRepo": "meta-llama/Llama-4-Scout-17B-16E-Instruct",
+    "totalParamsB": 109,
+    "activeParamsB": 17,
+    "arch": "moe",
+    "layers": 48,
+    "attention": {
+      "fullLayers": 12,
+      "slidingLayers": 36,
+      "window": 8192,
+      "kvHeads": 8,
+      "headDim": 128
+    },
+    "archSource": "config",
+    "contextNative": 10485760,
+    "license": "Llama 4 Community",
+    "licenseClass": "restricted",
+    "modalities": [
+      "text",
+      "vision"
+    ],
+    "useCases": [
+      "long-context",
+      "vision",
+      "chat"
+    ],
+    "releaseDate": "2025-04",
+    "ollamaTag": "llama4:scout",
+    "mlxRepo": null,
+    "legacy": false,
+    "verified": false
+  },
+  {
+    "id": "gpt-oss-120b",
+    "name": "gpt-oss-120b",
+    "lab": "OpenAI",
+    "family": "gpt-oss",
+    "hfRepo": "openai/gpt-oss-120b",
+    "totalParamsB": 116.8,
+    "activeParamsB": 5.1,
+    "arch": "moe",
+    "layers": 36,
+    "attention": {
+      "fullLayers": 18,
+      "slidingLayers": 18,
+      "window": 128,
+      "kvHeads": 8,
+      "headDim": 64
+    },
+    "archSource": "config",
+    "contextNative": 131072,
+    "license": "Apache 2.0",
+    "licenseClass": "permissive",
+    "modalities": [
+      "text"
+    ],
+    "useCases": [
+      "reasoning",
+      "agents",
+      "coding"
+    ],
+    "releaseDate": "2025-08",
+    "ollamaTag": "gpt-oss:120b",
+    "mlxRepo": "mlx-community/gpt-oss-120b-MXFP4-Q8",
+    "legacy": false,
+    "note": "Ships natively in MXFP4 (~4.25 bits/weight).",
+    "verified": false
+  },
+  {
+    "id": "mistral-small-4",
+    "name": "Mistral Small 4",
+    "lab": "Mistral AI",
+    "family": "Mistral Small",
+    "hfRepo": null,
+    "totalParamsB": 119,
+    "activeParamsB": 6.5,
+    "arch": "moe",
+    "layers": 36,
+    "attention": {
+      "fullLayers": 36,
+      "slidingLayers": 0,
+      "kvHeads": 8,
+      "headDim": 128
+    },
+    "archSource": "estimated",
+    "contextNative": 262144,
+    "license": "Apache 2.0",
+    "licenseClass": "permissive",
+    "modalities": [
+      "text"
+    ],
+    "useCases": [
+      "coding",
+      "long-context"
+    ],
+    "releaseDate": null,
+    "ollamaTag": null,
+    "mlxRepo": null,
+    "legacy": false,
+    "verified": false
+  },
+  {
+    "id": "qwen-3.5-122b-a10b",
+    "name": "Qwen 3.5 122B-A10B",
+    "lab": "Alibaba Qwen",
+    "family": "Qwen 3.5",
+    "hfRepo": "Qwen/Qwen3.5-122B-A10B",
+    "totalParamsB": 122,
+    "activeParamsB": 10,
+    "arch": "moe",
+    "layers": 48,
+    "attention": {
+      "fullLayers": 12,
+      "slidingLayers": 0,
+      "kvHeads": 2,
+      "headDim": 256
+    },
+    "archSource": "estimated",
+    "contextNative": 262144,
+    "license": "Apache 2.0",
+    "licenseClass": "permissive",
+    "modalities": [
+      "text",
+      "vision"
+    ],
+    "useCases": [
+      "chat",
+      "coding",
+      "reasoning",
+      "vision"
+    ],
+    "releaseDate": "2026-02",
+    "ollamaTag": null,
+    "mlxRepo": null,
+    "legacy": false,
+    "verified": false
+  },
+  {
+    "id": "qwen-3.8-flash-next",
+    "name": "Qwen 3.8 Flash Next",
+    "lab": "Alibaba Qwen",
+    "family": "Qwen 3.8",
+    "hfRepo": null,
+    "totalParamsB": 125,
+    "activeParamsB": 6,
+    "arch": "moe",
+    "layers": 48,
+    "attention": {
+      "fullLayers": 12,
+      "slidingLayers": 0,
+      "kvHeads": 2,
+      "headDim": 256
+    },
+    "archSource": "estimated",
+    "contextNative": null,
+    "license": "Check Hugging Face",
+    "licenseClass": "unknown",
+    "modalities": [
+      "text"
+    ],
+    "useCases": [
+      "coding"
+    ],
+    "releaseDate": null,
+    "ollamaTag": null,
+    "mlxRepo": null,
+    "legacy": false,
+    "note": "Target model of the Strata engine (12 GB+ GPU with 32 GB+ RAM, experts split across GPU/RAM/SSD). Strata speeds are measured-only; none collected yet.",
+    "verified": false
+  },
+  {
+    "id": "command-a-plus",
+    "name": "Command A+",
+    "lab": "Cohere",
+    "family": "Command",
+    "hfRepo": null,
+    "totalParamsB": 218,
+    "activeParamsB": 25,
+    "arch": "moe",
+    "layers": 64,
+    "attention": {
+      "fullLayers": 16,
+      "slidingLayers": 48,
+      "window": 4096,
+      "kvHeads": 8,
+      "headDim": 128
+    },
+    "archSource": "estimated",
+    "contextNative": 131072,
+    "license": "Apache 2.0",
+    "licenseClass": "permissive",
+    "modalities": [
+      "text"
+    ],
+    "useCases": [
+      "long-context",
+      "agents",
+      "chat"
+    ],
+    "releaseDate": null,
+    "ollamaTag": null,
+    "mlxRepo": null,
+    "legacy": false,
+    "note": "Enterprise RAG / tool use.",
+    "verified": false
+  },
+  {
+    "id": "glm-5.3-flash",
+    "name": "GLM-5.3-Flash",
+    "lab": "Z.ai",
+    "family": "GLM-5",
+    "hfRepo": null,
+    "totalParamsB": 320,
+    "activeParamsB": 18,
+    "arch": "moe",
+    "layers": 64,
+    "attention": {
+      "fullLayers": 64,
+      "slidingLayers": 0,
+      "kvHeads": 1,
+      "headDim": 128,
+      "mlaDim": 576
+    },
+    "archSource": "estimated",
+    "contextNative": 1048576,
+    "license": "MIT",
+    "licenseClass": "permissive",
+    "modalities": [
+      "text"
+    ],
+    "useCases": [
+      "coding",
+      "agents"
+    ],
+    "releaseDate": null,
+    "ollamaTag": null,
+    "mlxRepo": null,
+    "legacy": false,
+    "verified": false
+  },
+  {
+    "id": "qwen-3.5-397b",
+    "name": "Qwen 3.5 397B",
+    "lab": "Alibaba Qwen",
+    "family": "Qwen 3.5",
+    "hfRepo": "Qwen/Qwen3.5-397B-A17B",
+    "totalParamsB": 397,
+    "activeParamsB": 17,
+    "arch": "moe",
+    "layers": 60,
+    "attention": {
+      "fullLayers": 15,
+      "slidingLayers": 0,
+      "kvHeads": 2,
+      "headDim": 256
+    },
+    "archSource": "estimated",
+    "contextNative": 262144,
+    "license": "Apache 2.0",
+    "licenseClass": "permissive",
+    "modalities": [
+      "text",
+      "vision"
+    ],
+    "useCases": [
+      "chat",
+      "reasoning",
+      "coding",
+      "vision"
+    ],
+    "releaseDate": "2026-02",
+    "ollamaTag": null,
+    "mlxRepo": null,
+    "legacy": false,
+    "verified": false
+  },
+  {
+    "id": "minimax-m3",
+    "name": "MiniMax M3",
+    "lab": "MiniMax",
+    "family": "MiniMax",
+    "hfRepo": null,
+    "totalParamsB": 428,
+    "activeParamsB": 23,
+    "arch": "moe",
+    "layers": 62,
+    "attention": {
+      "fullLayers": 62,
+      "slidingLayers": 0,
+      "kvHeads": 8,
+      "headDim": 128
+    },
+    "archSource": "estimated",
+    "contextNative": 1048576,
+    "license": "MiniMax License",
+    "licenseClass": "restricted",
+    "modalities": [
+      "text"
+    ],
+    "useCases": [
+      "agents",
+      "long-context",
+      "coding"
+    ],
+    "releaseDate": null,
+    "ollamaTag": null,
+    "mlxRepo": null,
+    "legacy": false,
+    "verified": false
+  },
+  {
+    "id": "deepseek-v4.1-flash",
+    "name": "DeepSeek V4.1-Flash",
+    "lab": "DeepSeek",
+    "family": "DeepSeek V4",
+    "hfRepo": null,
+    "totalParamsB": 552,
+    "activeParamsB": 16,
+    "arch": "moe",
+    "layers": 48,
+    "attention": {
+      "fullLayers": 48,
+      "slidingLayers": 0,
+      "kvHeads": 1,
+      "headDim": 128,
+      "mlaDim": 576
+    },
+    "archSource": "estimated",
+    "contextNative": 1048576,
+    "license": "MIT",
+    "licenseClass": "permissive",
+    "modalities": [
+      "text"
+    ],
+    "useCases": [
+      "coding",
+      "agents"
+    ],
+    "releaseDate": null,
+    "ollamaTag": null,
+    "mlxRepo": null,
+    "legacy": false,
+    "verified": false
+  },
+  {
+    "id": "mistral-large-3",
+    "name": "Mistral Large 3",
+    "lab": "Mistral AI",
+    "family": "Mistral Large",
+    "hfRepo": "mistralai/Mistral-Large-3-675B-Instruct-2512",
+    "totalParamsB": 675,
+    "activeParamsB": 41,
+    "arch": "moe",
+    "layers": 61,
+    "attention": {
+      "fullLayers": 61,
+      "slidingLayers": 0,
+      "kvHeads": 1,
+      "headDim": 128,
+      "mlaDim": 576
+    },
+    "archSource": "estimated",
+    "contextNative": 262144,
+    "license": "Apache 2.0",
+    "licenseClass": "permissive",
+    "modalities": [
+      "text",
+      "vision"
+    ],
+    "useCases": [
+      "chat",
+      "reasoning",
+      "coding"
+    ],
+    "releaseDate": "2025-12",
+    "ollamaTag": null,
+    "mlxRepo": null,
+    "legacy": false,
+    "verified": false
+  },
+  {
+    "id": "deepseek-v4-pro",
+    "name": "DeepSeek V4-Pro",
+    "lab": "DeepSeek",
+    "family": "DeepSeek V4",
+    "hfRepo": null,
+    "totalParamsB": 1600,
+    "activeParamsB": 49,
+    "arch": "moe",
+    "layers": 61,
+    "attention": {
+      "fullLayers": 61,
+      "slidingLayers": 0,
+      "kvHeads": 1,
+      "headDim": 128,
+      "mlaDim": 576
+    },
+    "archSource": "estimated",
+    "contextNative": 1048576,
+    "license": "MIT",
+    "licenseClass": "permissive",
+    "modalities": [
+      "text"
+    ],
+    "useCases": [
+      "reasoning",
+      "coding",
+      "agents"
+    ],
+    "releaseDate": null,
+    "ollamaTag": null,
+    "mlxRepo": null,
+    "legacy": false,
+    "verified": false
+  },
+  {
+    "id": "kimi-k3",
+    "name": "Kimi K3",
+    "lab": "Moonshot AI",
+    "family": "Kimi",
+    "hfRepo": null,
+    "totalParamsB": 2800,
+    "activeParamsB": 104,
+    "arch": "moe",
+    "layers": 61,
+    "attention": {
+      "fullLayers": 61,
+      "slidingLayers": 0,
+      "kvHeads": 1,
+      "headDim": 128,
+      "mlaDim": 576
+    },
+    "archSource": "estimated",
+    "contextNative": 1048576,
+    "license": "Kimi License",
+    "licenseClass": "restricted",
+    "modalities": [
+      "text"
+    ],
+    "useCases": [
+      "reasoning",
+      "agents",
+      "coding"
+    ],
+    "releaseDate": null,
+    "ollamaTag": null,
+    "mlxRepo": null,
+    "legacy": false,
+    "verified": false
+  },
+  {
+    "id": "llama-3.2-1b",
+    "name": "Llama 3.2 1B",
+    "lab": "Meta",
+    "family": "Llama 3",
+    "hfRepo": "meta-llama/Llama-3.2-1B-Instruct",
+    "totalParamsB": 1.24,
+    "activeParamsB": 1.24,
+    "arch": "dense",
+    "layers": 16,
+    "attention": {
+      "fullLayers": 16,
+      "slidingLayers": 0,
+      "kvHeads": 8,
+      "headDim": 64
+    },
+    "archSource": "config",
+    "contextNative": 131072,
+    "license": "Llama 3.2 Community",
+    "licenseClass": "restricted",
+    "modalities": [
+      "text"
+    ],
+    "useCases": [
+      "edge"
+    ],
+    "releaseDate": "2024-09",
+    "ollamaTag": "llama3.2:1b",
+    "mlxRepo": "mlx-community/Llama-3.2-1B-Instruct-4bit",
+    "legacy": false,
+    "verified": false
+  },
+  {
+    "id": "llama-3.2-3b",
+    "name": "Llama 3.2 3B",
+    "lab": "Meta",
+    "family": "Llama 3",
+    "hfRepo": "meta-llama/Llama-3.2-3B-Instruct",
+    "totalParamsB": 3.21,
+    "activeParamsB": 3.21,
+    "arch": "dense",
+    "layers": 28,
+    "attention": {
+      "fullLayers": 28,
+      "slidingLayers": 0,
+      "kvHeads": 8,
+      "headDim": 128
+    },
+    "archSource": "config",
+    "contextNative": 131072,
+    "license": "Llama 3.2 Community",
+    "licenseClass": "restricted",
+    "modalities": [
+      "text"
+    ],
+    "useCases": [
+      "edge",
+      "chat"
+    ],
+    "releaseDate": "2024-09",
+    "ollamaTag": "llama3.2:3b",
+    "mlxRepo": "mlx-community/Llama-3.2-3B-Instruct-4bit",
+    "legacy": false,
+    "verified": false
+  },
+  {
+    "id": "phi-4-mini",
+    "name": "Phi-4-mini",
+    "lab": "Microsoft",
+    "family": "Phi",
+    "hfRepo": "microsoft/Phi-4-mini-instruct",
+    "totalParamsB": 3.84,
+    "activeParamsB": 3.84,
+    "arch": "dense",
+    "layers": 32,
+    "attention": {
+      "fullLayers": 32,
+      "slidingLayers": 0,
+      "kvHeads": 8,
+      "headDim": 128
+    },
+    "archSource": "config",
+    "contextNative": 131072,
+    "license": "MIT",
+    "licenseClass": "permissive",
+    "modalities": [
+      "text"
+    ],
+    "useCases": [
+      "edge",
+      "reasoning"
+    ],
+    "releaseDate": "2025-02",
+    "ollamaTag": "phi4-mini:3.8b",
+    "mlxRepo": null,
+    "legacy": false,
+    "verified": false
+  },
+  {
+    "id": "qwen3-4b",
+    "name": "Qwen3 4B (2507)",
+    "lab": "Alibaba Qwen",
+    "family": "Qwen 3",
+    "hfRepo": "Qwen/Qwen3-4B-Instruct-2507",
+    "totalParamsB": 4.02,
+    "activeParamsB": 4.02,
+    "arch": "dense",
+    "layers": 36,
+    "attention": {
+      "fullLayers": 36,
+      "slidingLayers": 0,
+      "kvHeads": 8,
+      "headDim": 128
+    },
+    "archSource": "config",
+    "contextNative": 262144,
+    "license": "Apache 2.0",
+    "licenseClass": "permissive",
+    "modalities": [
+      "text"
+    ],
+    "useCases": [
+      "edge",
+      "chat",
+      "reasoning"
+    ],
+    "releaseDate": "2025-08",
+    "ollamaTag": "qwen3:4b",
+    "mlxRepo": "mlx-community/Qwen3-4B-Instruct-2507-4bit",
+    "legacy": false,
+    "verified": false
+  },
+  {
+    "id": "qwen3-8b",
+    "name": "Qwen3 8B",
+    "lab": "Alibaba Qwen",
+    "family": "Qwen 3",
+    "hfRepo": "Qwen/Qwen3-8B",
+    "totalParamsB": 8.19,
+    "activeParamsB": 8.19,
+    "arch": "dense",
+    "layers": 36,
+    "attention": {
+      "fullLayers": 36,
+      "slidingLayers": 0,
+      "kvHeads": 8,
+      "headDim": 128
+    },
+    "archSource": "config",
+    "contextNative": 32768,
+    "license": "Apache 2.0",
+    "licenseClass": "permissive",
+    "modalities": [
+      "text"
+    ],
+    "useCases": [
+      "chat",
+      "reasoning",
+      "coding"
+    ],
+    "releaseDate": "2025-04",
+    "ollamaTag": "qwen3:8b",
+    "mlxRepo": "mlx-community/Qwen3-8B-4bit",
+    "legacy": false,
+    "verified": false
+  },
+  {
+    "id": "gemma-3-12b",
+    "name": "Gemma 3 12B",
+    "lab": "Google",
+    "family": "Gemma 3",
+    "hfRepo": "google/gemma-3-12b-it",
+    "totalParamsB": 12.2,
+    "activeParamsB": 12.2,
+    "arch": "dense",
+    "layers": 48,
+    "attention": {
+      "fullLayers": 8,
+      "slidingLayers": 40,
+      "window": 1024,
+      "kvHeads": 8,
+      "headDim": 256
+    },
+    "archSource": "config",
+    "contextNative": 131072,
+    "license": "Gemma Terms",
+    "licenseClass": "restricted",
+    "modalities": [
+      "text",
+      "vision"
+    ],
+    "useCases": [
+      "chat",
+      "vision"
+    ],
+    "releaseDate": "2025-03",
+    "ollamaTag": "gemma3:12b",
+    "mlxRepo": "mlx-community/gemma-3-12b-it-4bit",
+    "legacy": false,
+    "verified": false
+  },
+  {
+    "id": "mistral-small-3.2-24b",
+    "name": "Mistral Small 3.2 24B",
+    "lab": "Mistral AI",
+    "family": "Mistral Small",
+    "hfRepo": "mistralai/Mistral-Small-3.2-24B-Instruct-2506",
+    "totalParamsB": 24,
+    "activeParamsB": 24,
+    "arch": "dense",
+    "layers": 40,
+    "attention": {
+      "fullLayers": 40,
+      "slidingLayers": 0,
+      "kvHeads": 8,
+      "headDim": 128
+    },
+    "archSource": "config",
+    "contextNative": 131072,
+    "license": "Apache 2.0",
+    "licenseClass": "permissive",
+    "modalities": [
+      "text",
+      "vision"
+    ],
+    "useCases": [
+      "chat",
+      "vision",
+      "agents"
+    ],
+    "releaseDate": "2025-06",
+    "ollamaTag": "mistral-small3.2:24b",
+    "mlxRepo": null,
+    "legacy": false,
+    "verified": false
+  },
+  {
+    "id": "devstral-small-24b",
+    "name": "Devstral Small 24B",
+    "lab": "Mistral AI",
+    "family": "Devstral",
+    "hfRepo": "mistralai/Devstral-Small-2507",
+    "totalParamsB": 23.6,
+    "activeParamsB": 23.6,
+    "arch": "dense",
+    "layers": 40,
+    "attention": {
+      "fullLayers": 40,
+      "slidingLayers": 0,
+      "kvHeads": 8,
+      "headDim": 128
+    },
+    "archSource": "config",
+    "contextNative": 131072,
+    "license": "Apache 2.0",
+    "licenseClass": "permissive",
+    "modalities": [
+      "text"
+    ],
+    "useCases": [
+      "coding",
+      "agents"
+    ],
+    "releaseDate": "2025-07",
+    "ollamaTag": "devstral:24b",
+    "mlxRepo": null,
+    "legacy": false,
+    "verified": false
+  },
+  {
+    "id": "gemma-3-27b",
+    "name": "Gemma 3 27B",
+    "lab": "Google",
+    "family": "Gemma 3",
+    "hfRepo": "google/gemma-3-27b-it",
+    "totalParamsB": 27.4,
+    "activeParamsB": 27.4,
+    "arch": "dense",
+    "layers": 62,
+    "attention": {
+      "fullLayers": 10,
+      "slidingLayers": 52,
+      "window": 1024,
+      "kvHeads": 16,
+      "headDim": 128
+    },
+    "archSource": "config",
+    "contextNative": 131072,
+    "license": "Gemma Terms",
+    "licenseClass": "restricted",
+    "modalities": [
+      "text",
+      "vision"
+    ],
+    "useCases": [
+      "chat",
+      "vision",
+      "writing"
+    ],
+    "releaseDate": "2025-03",
+    "ollamaTag": "gemma3:27b",
+    "mlxRepo": "mlx-community/gemma-3-27b-it-4bit",
+    "legacy": false,
+    "verified": false
+  },
+  {
+    "id": "qwen3-30b-a3b",
+    "name": "Qwen3 30B-A3B (2507)",
+    "lab": "Alibaba Qwen",
+    "family": "Qwen 3",
+    "hfRepo": "Qwen/Qwen3-30B-A3B-Instruct-2507",
+    "totalParamsB": 30.5,
+    "activeParamsB": 3.3,
+    "arch": "moe",
+    "layers": 48,
+    "attention": {
+      "fullLayers": 48,
+      "slidingLayers": 0,
+      "kvHeads": 4,
+      "headDim": 128
+    },
+    "archSource": "config",
+    "contextNative": 262144,
+    "license": "Apache 2.0",
+    "licenseClass": "permissive",
+    "modalities": [
+      "text"
+    ],
+    "useCases": [
+      "chat",
+      "reasoning",
+      "agents"
+    ],
+    "releaseDate": "2025-07",
+    "ollamaTag": "qwen3:30b",
+    "mlxRepo": "mlx-community/Qwen3-30B-A3B-Instruct-2507-4bit",
+    "legacy": false,
+    "verified": false
+  },
+  {
+    "id": "qwen3-coder-30b-a3b",
+    "name": "Qwen3-Coder 30B-A3B",
+    "lab": "Alibaba Qwen",
+    "family": "Qwen 3",
+    "hfRepo": "Qwen/Qwen3-Coder-30B-A3B-Instruct",
+    "totalParamsB": 30.5,
+    "activeParamsB": 3.3,
+    "arch": "moe",
+    "layers": 48,
+    "attention": {
+      "fullLayers": 48,
+      "slidingLayers": 0,
+      "kvHeads": 4,
+      "headDim": 128
+    },
+    "archSource": "config",
+    "contextNative": 262144,
+    "license": "Apache 2.0",
+    "licenseClass": "permissive",
+    "modalities": [
+      "text"
+    ],
+    "useCases": [
+      "coding",
+      "agents"
+    ],
+    "releaseDate": "2025-07",
+    "ollamaTag": "qwen3-coder:30b",
+    "mlxRepo": "mlx-community/Qwen3-Coder-30B-A3B-Instruct-4bit",
+    "legacy": false,
+    "verified": false
+  },
+  {
+    "id": "qwen3-32b",
+    "name": "Qwen3 32B",
+    "lab": "Alibaba Qwen",
+    "family": "Qwen 3",
+    "hfRepo": "Qwen/Qwen3-32B",
+    "totalParamsB": 32.8,
+    "activeParamsB": 32.8,
+    "arch": "dense",
+    "layers": 64,
+    "attention": {
+      "fullLayers": 64,
+      "slidingLayers": 0,
+      "kvHeads": 8,
+      "headDim": 128
+    },
+    "archSource": "config",
+    "contextNative": 32768,
+    "license": "Apache 2.0",
+    "licenseClass": "permissive",
+    "modalities": [
+      "text"
+    ],
+    "useCases": [
+      "reasoning",
+      "coding",
+      "chat"
+    ],
+    "releaseDate": "2025-04",
+    "ollamaTag": "qwen3:32b",
+    "mlxRepo": "mlx-community/Qwen3-32B-4bit",
+    "legacy": false,
+    "verified": false
+  },
+  {
+    "id": "glm-4.5-air",
+    "name": "GLM-4.5-Air",
+    "lab": "Z.ai",
+    "family": "GLM-4.5",
+    "hfRepo": "zai-org/GLM-4.5-Air",
+    "totalParamsB": 106,
+    "activeParamsB": 12,
+    "arch": "moe",
+    "layers": 46,
+    "attention": {
+      "fullLayers": 46,
+      "slidingLayers": 0,
+      "kvHeads": 8,
+      "headDim": 128
+    },
+    "archSource": "config",
+    "contextNative": 131072,
+    "license": "MIT",
+    "licenseClass": "permissive",
+    "modalities": [
+      "text"
+    ],
+    "useCases": [
+      "coding",
+      "agents",
+      "reasoning"
+    ],
+    "releaseDate": "2025-07",
+    "ollamaTag": null,
+    "mlxRepo": "mlx-community/GLM-4.5-Air-4bit",
+    "legacy": false,
+    "verified": false
+  },
+  {
+    "id": "qwen3-235b-a22b",
+    "name": "Qwen3 235B-A22B (2507)",
+    "lab": "Alibaba Qwen",
+    "family": "Qwen 3",
+    "hfRepo": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+    "totalParamsB": 235,
+    "activeParamsB": 22,
+    "arch": "moe",
+    "layers": 94,
+    "attention": {
+      "fullLayers": 94,
+      "slidingLayers": 0,
+      "kvHeads": 4,
+      "headDim": 128
+    },
+    "archSource": "config",
+    "contextNative": 262144,
+    "license": "Apache 2.0",
+    "licenseClass": "permissive",
+    "modalities": [
+      "text"
+    ],
+    "useCases": [
+      "reasoning",
+      "coding",
+      "chat"
+    ],
+    "releaseDate": "2025-07",
+    "ollamaTag": "qwen3:235b",
+    "mlxRepo": null,
+    "legacy": false,
+    "verified": false
+  },
+  {
+    "id": "deepseek-v3.1",
+    "name": "DeepSeek V3.1",
+    "lab": "DeepSeek",
+    "family": "DeepSeek V3",
+    "hfRepo": "deepseek-ai/DeepSeek-V3.1",
+    "totalParamsB": 671,
+    "activeParamsB": 37,
+    "arch": "moe",
+    "layers": 61,
+    "attention": {
+      "fullLayers": 61,
+      "slidingLayers": 0,
+      "kvHeads": 1,
+      "headDim": 128,
+      "mlaDim": 576
+    },
+    "archSource": "config",
+    "contextNative": 131072,
+    "license": "MIT",
+    "licenseClass": "permissive",
+    "modalities": [
+      "text"
+    ],
+    "useCases": [
+      "reasoning",
+      "coding",
+      "agents"
+    ],
+    "releaseDate": "2025-08",
+    "ollamaTag": "deepseek-v3.1:671b",
+    "mlxRepo": null,
+    "legacy": false,
+    "verified": false
+  },
+  {
+    "id": "llama-2-7b",
+    "name": "Llama 2 7B",
+    "lab": "Meta",
+    "family": "Llama 2",
+    "hfRepo": "meta-llama/Llama-2-7b-hf",
+    "totalParamsB": 6.74,
+    "activeParamsB": 6.74,
+    "arch": "dense",
+    "layers": 32,
+    "attention": {
+      "fullLayers": 32,
+      "slidingLayers": 0,
+      "kvHeads": 32,
+      "headDim": 128
+    },
+    "archSource": "config",
+    "contextNative": 4096,
+    "license": "Llama 2 Community",
+    "licenseClass": "restricted",
+    "modalities": [
+      "text"
+    ],
+    "useCases": [
+      "chat"
+    ],
+    "releaseDate": "2023-07",
+    "ollamaTag": "llama2:7b",
+    "mlxRepo": null,
+    "legacy": true,
+    "note": "Reference model for llama.cpp's standard tg128/pp512 benchmarks (Q4_0); used to calibrate the estimator.",
+    "verified": false
+  }
+]

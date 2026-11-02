@@ -1,0 +1,345 @@
+[
+  {
+    "id": "apple-m1",
+    "vendor": "apple",
+    "family": "Apple M1",
+    "name": "M1",
+    "memoryOptionsGb": [
+      8,
+      16
+    ],
+    "bandwidthGbs": 68.25,
+    "matchKeys": [
+      "apple m1"
+    ],
+    "source": "brief"
+  },
+  {
+    "id": "apple-m1-pro",
+    "vendor": "apple",
+    "family": "Apple M1",
+    "name": "M1 Pro",
+    "memoryOptionsGb": [
+      16,
+      32
+    ],
+    "bandwidthGbs": 200,
+    "matchKeys": [
+      "apple m1 pro"
+    ],
+    "source": "brief"
+  },
+  {
+    "id": "apple-m1-max",
+    "vendor": "apple",
+    "family": "Apple M1",
+    "name": "M1 Max",
+    "memoryOptionsGb": [
+      32,
+      64
+    ],
+    "bandwidthGbs": 400,
+    "matchKeys": [
+      "apple m1 max"
+    ],
+    "source": "brief"
+  },
+  {
+    "id": "apple-m1-ultra",
+    "vendor": "apple",
+    "family": "Apple M1",
+    "name": "M1 Ultra",
+    "memoryOptionsGb": [
+      64,
+      128
+    ],
+    "bandwidthGbs": 800,
+    "matchKeys": [
+      "apple m1 ultra"
+    ],
+    "source": "brief"
+  },
+  {
+    "id": "apple-m2",
+    "vendor": "apple",
+    "family": "Apple M2",
+    "name": "M2",
+    "memoryOptionsGb": [
+      8,
+      16,
+      24
+    ],
+    "bandwidthGbs": 100,
+    "matchKeys": [
+      "apple m2"
+    ],
+    "source": "brief"
+  },
+  {
+    "id": "apple-m2-pro",
+    "vendor": "apple",
+    "family": "Apple M2",
+    "name": "M2 Pro",
+    "memoryOptionsGb": [
+      16,
+      32
+    ],
+    "bandwidthGbs": 200,
+    "matchKeys": [
+      "apple m2 pro"
+    ],
+    "source": "brief"
+  },
+  {
+    "id": "apple-m2-max",
+    "vendor": "apple",
+    "family": "Apple M2",
+    "name": "M2 Max",
+    "memoryOptionsGb": [
+      32,
+      64,
+      96
+    ],
+    "bandwidthGbs": 400,
+    "matchKeys": [
+      "apple m2 max"
+    ],
+    "source": "brief"
+  },
+  {
+    "id": "apple-m2-ultra",
+    "vendor": "apple",
+    "family": "Apple M2",
+    "name": "M2 Ultra",
+    "memoryOptionsGb": [
+      64,
+      128,
+      192
+    ],
+    "bandwidthGbs": 800,
+    "matchKeys": [
+      "apple m2 ultra"
+    ],
+    "source": "brief"
+  },
+  {
+    "id": "apple-m3",
+    "vendor": "apple",
+    "family": "Apple M3",
+    "name": "M3",
+    "memoryOptionsGb": [
+      8,
+      16,
+      24
+    ],
+    "bandwidthGbs": 100,
+    "matchKeys": [
+      "apple m3"
+    ],
+    "source": "brief"
+  },
+  {
+    "id": "apple-m3-pro",
+    "vendor": "apple",
+    "family": "Apple M3",
+    "name": "M3 Pro",
+    "memoryOptionsGb": [
+      18,
+      36
+    ],
+    "bandwidthGbs": 150,
+    "matchKeys": [
+      "apple m3 pro"
+    ],
+    "source": "brief"
+  },
+  {
+    "id": "apple-m3-max-40",
+    "vendor": "apple",
+    "family": "Apple M3",
+    "name": "M3 Max (40-core GPU)",
+    "memoryOptionsGb": [
+      48,
+      64,
+      128
+    ],
+    "bandwidthGbs": 400,
+    "matchKeys": [
+      "apple m3 max"
+    ],
+    "source": "brief"
+  },
+  {
+    "id": "apple-m3-max-30",
+    "vendor": "apple",
+    "family": "Apple M3",
+    "name": "M3 Max (30-core GPU)",
+    "memoryOptionsGb": [
+      36,
+      96
+    ],
+    "bandwidthGbs": 300,
+    "matchKeys": [
+      "apple m3 max"
+    ],
+    "source": "brief"
+  },
+  {
+    "id": "apple-m3-ultra",
+    "vendor": "apple",
+    "family": "Apple M3",
+    "name": "M3 Ultra",
+    "memoryOptionsGb": [
+      96,
+      256,
+      512
+    ],
+    "bandwidthGbs": 819,
+    "matchKeys": [
+      "apple m3 ultra"
+    ],
+    "source": "brief"
+  },
+  {
+    "id": "apple-m4",
+    "vendor": "apple",
+    "family": "Apple M4",
+    "name": "M4",
+    "memoryOptionsGb": [
+      16,
+      24,
+      32
+    ],
+    "bandwidthGbs": 120,
+    "matchKeys": [
+      "apple m4"
+    ],
+    "source": "brief"
+  },
+  {
+    "id": "apple-m4-pro",
+    "vendor": "apple",
+    "family": "Apple M4",
+    "name": "M4 Pro",
+    "memoryOptionsGb": [
+      24,
+      48,
+      64
+    ],
+    "bandwidthGbs": 273,
+    "matchKeys": [
+      "apple m4 pro"
+    ],
+    "source": "brief"
+  },
+  {
+    "id": "apple-m4-max-40",
+    "vendor": "apple",
+    "family": "Apple M4",
+    "name": "M4 Max (40-core GPU)",
+    "memoryOptionsGb": [
+      48,
+      64,
+      128
+    ],
+    "bandwidthGbs": 546,
+    "matchKeys": [
+      "apple m4 max"
+    ],
+    "source": "brief"
+  },
+  {
+    "id": "apple-m4-max-32",
+    "vendor": "apple",
+    "family": "Apple M4",
+    "name": "M4 Max (32-core GPU)",
+    "memoryOptionsGb": [
+      36
+    ],
+    "bandwidthGbs": 410,
+    "matchKeys": [
+      "apple m4 max"
+    ],
+    "source": "brief"
+  },
+  {
+    "id": "apple-m5",
+    "vendor": "apple",
+    "family": "Apple M5",
+    "name": "M5",
+    "memoryOptionsGb": [
+      16,
+      24,
+      32
+    ],
+    "bandwidthGbs": 153.6,
+    "matchKeys": [
+      "apple m5"
+    ],
+    "source": "brief"
+  },
+  {
+    "id": "apple-m5-pro",
+    "vendor": "apple",
+    "family": "Apple M5",
+    "name": "M5 Pro",
+    "memoryOptionsGb": [
+      24,
+      48,
+      64
+    ],
+    "bandwidthGbs": 307,
+    "matchKeys": [
+      "apple m5 pro"
+    ],
+    "source": "estimated"
+  },
+  {
+    "id": "apple-m5-max",
+    "vendor": "apple",
+    "family": "Apple M5",
+    "name": "M5 Max",
+    "memoryOptionsGb": [
+      36,
+      48,
+      64,
+      128
+    ],
+    "bandwidthGbs": 614,
+    "matchKeys": [
+      "apple m5 max"
+    ],
+    "source": "estimated"
+  },
+  {
+    "id": "amd-ryzen-ai-max-395",
+    "vendor": "amd",
+    "family": "AMD Ryzen AI",
+    "name": "Ryzen AI Max+ 395 (Radeon 8060S)",
+    "memoryOptionsGb": [
+      32,
+      64,
+      96,
+      128
+    ],
+    "bandwidthGbs": 256,
+    "matchKeys": [
+      "radeon 8060s"
+    ],
+    "source": "brief"
+  },
+  {
+    "id": "nvidia-dgx-spark",
+    "vendor": "nvidia",
+    "family": "NVIDIA Grace Blackwell",
+    "name": "DGX Spark (GB10)",
+    "memoryOptionsGb": [
+      128
+    ],
+    "bandwidthGbs": 273,
+    "matchKeys": [
+      "gb10"
+    ],
+    "source": "brief"
+  }
+]

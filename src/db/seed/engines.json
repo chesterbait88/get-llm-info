@@ -1,0 +1,42 @@
+[
+  {
+    "id": "llamacpp",
+    "name": "llama.cpp",
+    "speedFactor": 1.0,
+    "platforms": ["nvidia", "amd", "intel", "apple", "unified-x86", "unified-arm", "cpu"],
+    "requiresFullGpu": false,
+    "notes": "Baseline. GGUF files; CUDA, ROCm, Vulkan, Metal and CPU backends; supports partial GPU offload (-ngl, --n-cpu-moe)."
+  },
+  {
+    "id": "ollama",
+    "name": "Ollama",
+    "speedFactor": 0.9,
+    "platforms": ["nvidia", "amd", "intel", "apple", "unified-x86", "unified-arm", "cpu"],
+    "requiresFullGpu": false,
+    "notes": "Easiest install; built on llama.cpp. Usually a little slower; one test measured 61 vs 143 tok/s on an L40S, so treat this factor as provisional until calibrated from data."
+  },
+  {
+    "id": "lmstudio",
+    "name": "LM Studio (GGUF)",
+    "speedFactor": 0.97,
+    "platforms": ["nvidia", "amd", "intel", "apple", "unified-x86", "unified-arm", "cpu"],
+    "requiresFullGpu": false,
+    "notes": "Desktop app wrapping llama.cpp; close to raw llama.cpp speed."
+  },
+  {
+    "id": "mlx",
+    "name": "MLX / LM Studio MLX",
+    "speedFactor": 1.15,
+    "platforms": ["apple"],
+    "requiresFullGpu": true,
+    "notes": "Apple Silicon only. Often faster than GGUF on Mac. MLX 4/6/8-bit roughly map to Q4/Q6/Q8 here."
+  },
+  {
+    "id": "vllm",
+    "name": "vLLM",
+    "speedFactor": 1.0,
+    "platforms": ["nvidia", "amd"],
+    "requiresFullGpu": true,
+    "notes": "Server engine. Single-stream speed roughly matches llama.cpp; wins on concurrent load (2.8–4.4x at 64 requests in one test). Needs the model fully in VRAM; 4-bit AWQ/GPTQ roughly maps to Q4 here."
+  }
+]

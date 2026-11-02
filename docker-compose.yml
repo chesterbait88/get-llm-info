@@ -1,0 +1,24 @@
+# Local Postgres for development: `docker compose up -d db`, then `npm run db:setup`.
+# Full stack (app + db): `docker compose --profile app up -d --build`.
+services:
+  db:
+    image: postgres:16
+    environment:
+      POSTGRES_USER: llm
+      POSTGRES_PASSWORD: llm
+      POSTGRES_DB: llm_matcher
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+  app:
+    build: .
+    profiles: ["app"]
+    environment:
+      DATABASE_URL: postgres://llm:llm@db:5432/llm_matcher
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+volumes:
+  pgdata:
