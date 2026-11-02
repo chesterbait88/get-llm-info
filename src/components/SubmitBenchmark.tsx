@@ -51,13 +51,13 @@ export function SubmitBenchmark({ catalog, profile }: { catalog: Catalog; profil
 
   return (
     <details className="border-t border-rule pt-4">
-      <summary className="cursor-pointer text-[17px] font-semibold text-board">
+      <summary className="cursor-pointer text-[17px] font-semibold text-lead">
         Add your own benchmark{" "}
         <span className="font-normal text-muted">Measured runs replace estimates for everyone with the same hardware.</span>
       </summary>
       <form onSubmit={submit} className="mt-3 flex flex-col gap-3">
         <p className="text-sm text-muted">
-          Run <code className="rounded-[3px] bg-paper px-1 font-mono">llama-bench -m model.gguf -p 512 -n 128</code> (or <code className="rounded-[3px] bg-paper px-1 font-mono">ollama run MODEL --verbose</code>) and paste the output. It will be filed under <strong>{hardwareName ?? "the hardware above"}</strong>.
+          Run <code className="rounded-[3px] border border-rule bg-sheet px-1 font-mono text-[14px]">llama-bench -m model.gguf -p 512 -n 128</code> (or <code className="rounded-[3px] border border-rule bg-sheet px-1 font-mono text-[14px]">ollama run MODEL --verbose</code>) and paste the output. It will be filed under <strong>{hardwareName ?? "the hardware above"}</strong>.
         </p>
         <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
           <Field label="Model">
@@ -77,7 +77,7 @@ export function SubmitBenchmark({ catalog, profile }: { catalog: Catalog; profil
           <textarea className={`${inputClass} h-24 font-mono text-xs`} value={raw} onChange={(e) => setRaw(e.target.value)} />
         </Field>
         <div className="flex items-center gap-3">
-          <button type="submit" disabled={busy || tg <= 0} className="rounded-[4px] bg-board px-3.5 py-1.5 text-[15px] font-medium text-silk hover:bg-board-raised disabled:opacity-50">
+          <button type="submit" disabled={busy || tg <= 0} className="rounded-[4px] bg-action px-3.5 py-1.5 text-[15px] font-medium text-on-action hover:bg-action-hover disabled:opacity-50">
             {busy ? "Sending…" : "Send benchmark"}
           </button>
           {status && <span className={`text-sm ${status.ok ? "text-instant" : "text-slow"}`}>{status.msg}</span>}

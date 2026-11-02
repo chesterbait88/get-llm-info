@@ -16,17 +16,33 @@ model, so "35 tok/s" becomes something you can feel. Everything else stays quiet
 | `board-raised` | `#16503F` | Inputs and hover states on the board |
 | `silk` | `#EAF0E6` | Silkscreen text and outlines on the board |
 | `silk-dim` | `#A9C2B4` | Secondary text on the board (≥4.5:1 on `board`) |
-| `gold` | `#D2AE4E` | Pad gold: focus rings, the selected state, the writer cursor. Never body text on paper |
+| `gold` | `#D2AE4E` | Pad gold: focus rings on the board, the selected state, the writer cursor. Never text on paper |
 | `paper` | `#EEF2ED` | Page background |
 | `sheet` | `#FAFBF8` | Result rows, the writer strip |
 | `ink` | `#1C2B26` | Body text on paper |
 | `muted` | `#566A61` | Secondary text on paper (≥4.5:1 on `sheet`) |
 | `rule` | `#D3DCD5` | Dividers and input borders on paper |
+| `lead` | `#0F3D33` | Headings, links and selected tabs on paper |
+| `focus` | `#0F3D33` | Focus ring on paper (gold is used on the board) |
 
 Speed verdicts (text, ruler marks and the left edge of each row):
-`instant #1E7A55`, `comfortable #2C6E9E`, `usable #9A6B05`, `slow #B03A2E`, `nofit #7D8A84`.
+`instant #1E7A55`, `comfortable #2C6E9E`, `usable #8A5F00`, `slow #B03A2E`, `nofit #7D8A84`.
 
-Light only, on purpose: the board already supplies the dark surface, and data reads best on paper.
+### Dark theme
+
+Follows the system setting; the header's Theme switch (System / Light / Dark) overrides it per browser.
+The board stays green but lifts slightly so it still reads as a separate surface on the dark page.
+
+| Token | Dark value |
+| --- | --- |
+| `paper` / `sheet` | `#14231E` / `#1B2D27` |
+| `board` / `board-raised` | `#18493C` / `#215B4B` |
+| `ink` / `muted` / `rule` | `#E3EBE5` / `#9FB4AA` / `#2D453D` |
+| `lead` | `#8ED3B4` (mint: green text would vanish on a dark page) |
+| `gold` / `focus` | `#D9B85C` / `#D9B85C` |
+| Verdicts | `instant #5DC79A`, `comfortable #73B4E6`, `usable #E0B144`, `slow #F08372`, `nofit #8F9D96` |
+
+Every text pair passes 4.5:1 (verdict marks and large figures 3:1) in both themes.
 
 ## Typography
 

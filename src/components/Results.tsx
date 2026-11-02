@@ -112,7 +112,7 @@ function Row({ r, calibrated, requestedCtx, watching, onWatch }: { r: ModelResul
             <span className="ml-2 text-[15px] text-muted">{m.lab}</span>
           </button>
           <p className="mt-0.5 text-[15px] text-muted">
-            {fmtParams(m)} parameters, {fmtContext(m.contextNative)} context, {m.licenseClass === "permissive" ? m.license : `${m.license} licence`}. Good for {uses.join(", ")}.
+            {fmtParams(m)} parameters, {fmtContext(m.contextNative)} context, {m.licenseClass === "permissive" || /licen[cs]e|terms/i.test(m.license) ? m.license : `${m.license} licence`}. Good for {uses.join(", ")}.
           </p>
           <p className="mt-1 text-[15px]">
             {fits ? (
@@ -158,11 +158,11 @@ function Row({ r, calibrated, requestedCtx, watching, onWatch }: { r: ModelResul
           </span>
         )}
         {fits && (
-          <button type="button" className="font-medium text-board underline underline-offset-2 disabled:no-underline disabled:opacity-60" disabled={watching} onClick={() => onWatch(m.id)}>
+          <button type="button" className="font-medium text-lead underline underline-offset-2 disabled:no-underline disabled:opacity-60" disabled={watching} onClick={() => onWatch(m.id)}>
             {watching ? "Shown in the preview" : "Preview its speed"}
           </button>
         )}
-        <button type="button" className="font-medium text-board underline underline-offset-2" onClick={() => setOpen(!open)} aria-expanded={open}>
+        <button type="button" className="font-medium text-lead underline underline-offset-2" onClick={() => setOpen(!open)} aria-expanded={open}>
           {open ? "Hide details" : "Every quantization and how to run it"}
         </button>
       </div>
@@ -220,20 +220,20 @@ function Details({ r, calibrated }: { r: ModelResult; calibrated: boolean }) {
         )}
         <div className="flex flex-wrap gap-x-5 gap-y-1 text-[15px]">
           {m.hfRepo && (
-            <a className="text-board underline underline-offset-2" href={`https://huggingface.co/${m.hfRepo}`} target="_blank" rel="noreferrer">
+            <a className="text-lead underline underline-offset-2" href={`https://huggingface.co/${m.hfRepo}`} target="_blank" rel="noreferrer">
               Model page on Hugging Face
             </a>
           )}
-          <a className="text-board underline underline-offset-2" href={`https://huggingface.co/models?library=gguf&search=${encodeURIComponent(m.name)}`} target="_blank" rel="noreferrer">
+          <a className="text-lead underline underline-offset-2" href={`https://huggingface.co/models?library=gguf&search=${encodeURIComponent(m.name)}`} target="_blank" rel="noreferrer">
             Find GGUF files
           </a>
           {m.mlxRepo && (
-            <a className="text-board underline underline-offset-2" href={`https://huggingface.co/${m.mlxRepo}`} target="_blank" rel="noreferrer">
+            <a className="text-lead underline underline-offset-2" href={`https://huggingface.co/${m.mlxRepo}`} target="_blank" rel="noreferrer">
               MLX version for Mac
             </a>
           )}
           {!m.ollamaTag && (
-            <a className="text-board underline underline-offset-2" href={`https://ollama.com/search?q=${encodeURIComponent(m.name)}`} target="_blank" rel="noreferrer">
+            <a className="text-lead underline underline-offset-2" href={`https://ollama.com/search?q=${encodeURIComponent(m.name)}`} target="_blank" rel="noreferrer">
               Search Ollama
             </a>
           )}

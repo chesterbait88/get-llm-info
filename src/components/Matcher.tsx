@@ -12,6 +12,7 @@ import { Writer } from "./Writer";
 import { Results } from "./Results";
 import { Accuracy } from "./Accuracy";
 import { SubmitBenchmark } from "./SubmitBenchmark";
+import { ThemeSwitch } from "./ThemeSwitch";
 import { Button, Check, Field, Segmented, Select, Tab } from "./ui";
 
 const STORAGE_KEY = "llm-matcher-profile-v2";
@@ -109,11 +110,14 @@ export function Matcher({ catalog }: { catalog: Catalog }) {
 
   return (
     <main className="mx-auto flex max-w-[1100px] flex-col gap-12 px-4 pb-16 pt-8 sm:pt-14">
-      <header className="flex max-w-[44rem] flex-col gap-3">
-        <h1 className="t-title text-board">Which open models will your machine run, and how fast?</h1>
-        <p className="max-w-[60ch] text-[17px] text-muted">
-          Fill in your parts. Every model is checked for fit and given the best quantization it can use, plus how many tokens a second it will write.
-        </p>
+      <header className="flex flex-col-reverse gap-6 md:flex-row md:items-start md:justify-between">
+        <div className="flex max-w-[44rem] flex-col gap-3">
+          <h1 className="t-title text-lead">Which open models will your machine run, and how fast?</h1>
+          <p className="max-w-[60ch] text-[17px] text-muted">
+            Fill in your parts. Every model is checked for fit and given the best quantization it can use, plus how many tokens a second it will write.
+          </p>
+        </div>
+        <ThemeSwitch />
       </header>
 
       <div className="flex flex-col gap-4">
@@ -131,7 +135,7 @@ export function Matcher({ catalog }: { catalog: Catalog }) {
       </div>
 
       <section aria-labelledby="preview-title" className="flex flex-col gap-3">
-        <h2 id="preview-title" className="t-heading text-board">
+        <h2 id="preview-title" className="t-heading text-lead">
           {writerResult && writerResult !== best ? "Speed preview" : "Your best match, writing at its real speed"}
         </h2>
         <Writer result={writerResult} machine={machineName} />
@@ -139,7 +143,7 @@ export function Matcher({ catalog }: { catalog: Catalog }) {
 
       <section aria-labelledby="results-title" className="flex flex-col gap-6">
         <div className="flex flex-col gap-2">
-          <h2 id="results-title" className="t-heading text-board">
+          <h2 id="results-title" className="t-heading text-lead">
             Models for your machine
           </h2>
           <p className="max-w-[68ch] text-[15px] text-muted">
@@ -187,7 +191,7 @@ export function Matcher({ catalog }: { catalog: Catalog }) {
         </div>
 
         <details className="group border-y border-rule py-3">
-          <summary className="cursor-pointer text-[15px] font-medium text-board">
+          <summary className="cursor-pointer text-[15px] font-medium text-lead">
             Engine, context and quality settings
             <span className="ml-2 font-normal text-muted">
               {engine.name}, {fmtContext(profile.ctx)} context, {profile.pref === "balanced" ? "balanced quality" : profile.pref === "speed" ? "fastest quantization" : "best quality"}
@@ -295,7 +299,7 @@ function ConfirmCard({
         <p className="mt-2 text-[15px]">
           Same name, different version:{" "}
           {suggestion.alternatives.map((a) => (
-            <button key={a.id} type="button" className="font-medium text-board underline underline-offset-2" onClick={() => update({ chipId: a.id })}>
+            <button key={a.id} type="button" className="font-medium text-lead underline underline-offset-2" onClick={() => update({ chipId: a.id })}>
               {a.name}
             </button>
           ))}

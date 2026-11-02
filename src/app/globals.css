@@ -16,18 +16,77 @@
   --color-ink: #1c2b26;
   --color-muted: #566a61;
   --color-rule: #d3dcd5;
+  /* Headings, links and selected tabs on the page (board green in light, mint in dark) */
+  --color-lead: #0f3d33;
+  /* Focus ring on the page: green in light, gold in dark (gold is always used on the board) */
+  --color-focus: #0f3d33;
+  /* Filled controls on the page (primary button, selected switch option) */
+  --color-action: #0f3d33;
+  --color-on-action: #eaf0e6;
+  --color-action-hover: #16503f;
 
   --color-instant: #1e7a55;
   --color-comfortable: #2c6e9e;
-  --color-usable: #9a6b05;
+  --color-usable: #8a5f00;
   --color-slow: #b03a2e;
   --color-nofit: #7d8a84;
+}
+
+/* Dark theme: follows the system unless the visitor picked a theme (data-theme on <html>). */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+  --color-board: #18493c;
+  --color-board-raised: #215b4b;
+  --color-silk: #eaf0e6;
+  --color-silk-dim: #a9c2b4;
+  --color-gold: #d9b85c;
+  --color-paper: #14231e;
+  --color-sheet: #1b2d27;
+  --color-ink: #e3ebe5;
+  --color-muted: #9fb4aa;
+  --color-rule: #2d453d;
+  --color-lead: #8ed3b4;
+  --color-instant: #5dc79a;
+  --color-comfortable: #73b4e6;
+  --color-usable: #e0b144;
+  --color-slow: #f08372;
+  --color-nofit: #8f9d96;
+  --color-focus: #d9b85c;
+  --color-action: #8ed3b4;
+  --color-on-action: #0f2a23;
+  --color-action-hover: #a6e0c6;
+  color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --color-board: #18493c;
+  --color-board-raised: #215b4b;
+  --color-silk: #eaf0e6;
+  --color-silk-dim: #a9c2b4;
+  --color-gold: #d9b85c;
+  --color-paper: #14231e;
+  --color-sheet: #1b2d27;
+  --color-ink: #e3ebe5;
+  --color-muted: #9fb4aa;
+  --color-rule: #2d453d;
+  --color-lead: #8ed3b4;
+  --color-instant: #5dc79a;
+  --color-comfortable: #73b4e6;
+  --color-usable: #e0b144;
+  --color-slow: #f08372;
+  --color-nofit: #8f9d96;
+  --color-focus: #d9b85c;
+  --color-action: #8ed3b4;
+  --color-on-action: #0f2a23;
+  --color-action-hover: #a6e0c6;
+  color-scheme: dark;
 }
 
 html {
   color-scheme: light;
   background: var(--color-paper);
 }
+
 body {
   background: var(--color-paper);
   color: var(--color-ink);
@@ -89,8 +148,11 @@ body {
 
 /* Focus: pad gold, everywhere */
 :where(a, button, input, select, textarea, summary):focus-visible {
-  outline: 2px solid var(--color-gold);
+  outline: 2px solid var(--color-focus);
   outline-offset: 2px;
+}
+.board :where(a, button, input, select, textarea, summary):focus-visible {
+  outline-color: var(--color-gold);
 }
 
 /* Board inputs */
@@ -162,8 +224,9 @@ body {
   color: var(--color-muted);
 }
 .seg button[aria-checked="true"] {
-  background: var(--color-board);
-  color: var(--color-silk);
+  background: var(--color-action);
+  color: var(--color-on-action);
+  font-weight: 600;
 }
 .board .seg {
   border-color: var(--color-silk-dim);

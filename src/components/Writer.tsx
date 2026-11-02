@@ -73,7 +73,7 @@ export function Writer({ result, machine }: { result: ModelResult | null; machin
         <p className="text-[15px] text-muted">
           {model.name} on {machine}
         </p>
-        <p className="t-figure text-board">
+        <p className="t-figure text-lead">
           {pick.speedKind === "estimated" ? "~" : ""}
           {fmtTps(tps)}
           <span className="ml-1.5 text-base font-medium">tokens/sec</span>
@@ -82,7 +82,7 @@ export function Writer({ result, machine }: { result: ModelResult | null; machin
           About {wpm.toLocaleString()} words a minute, {tps >= READING_TPS ? "faster than you read" : "slower than you read"}. This reply takes {seconds < 10 ? seconds.toFixed(1) : Math.round(seconds)} seconds.
         </p>
         <div className="mt-1">
-          <button type="button" className="text-[15px] font-medium text-board underline underline-offset-2" onClick={() => setRun((r) => r + 1)}>
+          <button type="button" className="text-[15px] font-medium text-lead underline underline-offset-2" onClick={() => setRun((r) => r + 1)}>
             {done ? "Play again" : "Restart"}
           </button>
         </div>

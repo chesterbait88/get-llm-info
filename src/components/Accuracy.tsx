@@ -33,7 +33,7 @@ export function Accuracy({ catalog }: { catalog: Catalog }) {
 
   return (
     <details className="border-t border-rule pt-4">
-      <summary className="cursor-pointer text-[17px] font-semibold text-board">
+      <summary className="cursor-pointer text-[17px] font-semibold text-lead">
         How accurate are the estimates?{" "}
         <span className="font-normal text-muted">
           Off by {(mape * 100).toFixed(0)}% on average across {rows.length} measured runs.

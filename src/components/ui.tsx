@@ -88,7 +88,7 @@ export function Tab({ active, onClick, children }: { active: boolean; onClick: (
       type="button"
       aria-pressed={active}
       onClick={onClick}
-      className={`border-b-2 pb-1 text-[15px] ${active ? "border-board font-semibold text-board" : "border-transparent text-muted hover:text-ink"}`}
+      className={`border-b-2 pb-1 text-[15px] ${active ? "border-lead font-semibold text-lead" : "border-transparent text-muted hover:text-ink"}`}
     >
       {children}
     </button>
@@ -98,7 +98,7 @@ export function Tab({ active, onClick, children }: { active: boolean; onClick: (
 export function Check({ checked, onChange, children }: { checked: boolean; onChange: (v: boolean) => void; children: ReactNode }) {
   return (
     <label className="inline-flex cursor-pointer items-start gap-2 text-[15px]">
-      <input type="checkbox" className="mt-1 h-4 w-4 accent-[var(--color-board)]" checked={checked} onChange={(e) => onChange(e.target.checked)} />
+      <input type="checkbox" className="mt-1 h-4 w-4 accent-[var(--color-lead)]" checked={checked} onChange={(e) => onChange(e.target.checked)} />
       <span>{children}</span>
     </label>
   );
@@ -106,9 +106,9 @@ export function Check({ checked, onChange, children }: { checked: boolean; onCha
 
 export function Button({ children, onClick, variant = "primary", type = "button", disabled }: { children: ReactNode; onClick?: () => void; variant?: "primary" | "secondary" | "quiet"; type?: "button" | "submit"; disabled?: boolean }) {
   const styles = {
-    primary: "bg-board text-silk hover:bg-board-raised",
-    secondary: "border border-board text-board hover:bg-sheet",
-    quiet: "text-board underline underline-offset-2",
+    primary: "bg-action text-on-action hover:bg-action-hover",
+    secondary: "border border-lead text-lead hover:bg-sheet",
+    quiet: "text-lead underline underline-offset-2",
   }[variant];
   return (
     <button type={type} disabled={disabled} onClick={onClick} className={`rounded-[4px] px-3.5 py-1.5 text-[15px] font-medium disabled:opacity-50 ${styles}`}>
