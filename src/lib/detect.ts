@@ -76,31 +76,35 @@ export interface Suggestion {
   alternatives: { id: string; name: string }[];
   /** Vendor to pre-select when the exact card is unknown. */
   vendor: "nvidia" | "amd" | "intel" | "apple" | null;
+  /** Logical CPU threads the browser reports (it never reveals the CPU model). */
+  threads: number | null;
 }
 
 /** Turn raw probes into a profile patch. Pure, so it is unit-tested. */
 export function suggestFromProbe(p: Probe, cat: Pick<Catalog, "gpus" | "chips">): Suggestion {
-  const threads = p.threads ? { cpuThreads: p.threads } : {};
+  const threads = p.threads ?? null;
   const candidates = [p.renderer, p.webgpu?.description, p.webgpu?.device].filter(Boolean) as string[];
   for (const s of candidates) {
     const m = matchRenderer(s, cat.gpus, cat.chips);
     if (m?.type === "gpu") {
       return {
-        patch: { mode: "pc", gpuId: m.gpu.id, vramGb: m.gpu.vramGb[0], ...threads },
+        patch: { mode: "pc", gpuId: m.gpu.id, vramGb: m.gpu.vramGb[0], vramCustom: false },
         summary: `${m.gpu.name} (${m.gpu.vramGb.join(" / ")} GB)`,
         confidence: "exact",
         alternatives: [],
         vendor: m.gpu.vendor,
+        threads,
       };
     }
     if (m?.type === "chip") {
       const mem = m.chip.memoryOptionsGb;
       return {
-        patch: { mode: "unified", chipId: m.chip.id, memoryGb: mem[Math.min(1, mem.length - 1)], ...threads },
+        patch: { mode: "unified", chipId: m.chip.id, memoryGb: mem[Math.min(1, mem.length - 1)] },
         summary: m.chip.name,
         confidence: "exact",
         alternatives: m.alternatives.map((c) => ({ id: c.id, name: c.name })),
         vendor: m.chip.vendor === "apple" ? "apple" : null,
+        threads,
       };
     }
   }
@@ -110,22 +114,24 @@ export function suggestFromProbe(p: Probe, cat: Pick<Catalog, "gpus" | "chips">)
     (/mac/i.test(p.platform ?? "") && /arm/i.test(p.architecture ?? "") ? "apple" : null);
   if (vendor === "apple") {
     return {
-      patch: { mode: "unified", ...threads },
+      patch: { mode: "unified" },
       summary: "an Apple Silicon Mac (pick your chip)",
       confidence: "family",
       alternatives: [],
       vendor,
+      threads,
     };
   }
   if (vendor) {
     const arch = p.webgpu?.architecture ? ` (${p.webgpu.architecture})` : "";
     return {
-      patch: { mode: "pc", ...threads },
+      patch: { mode: "pc" },
       summary: `an ${vendor.toUpperCase()} GPU${arch} — pick the exact card`,
       confidence: "family",
       alternatives: [],
       vendor,
+      threads,
     };
   }
-  return { patch: { ...threads }, summary: "", confidence: "none", alternatives: [], vendor: null };
+  return { patch: {}, summary: "", confidence: "none", alternatives: [], vendor: null, threads };
 }

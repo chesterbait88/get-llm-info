@@ -12,8 +12,8 @@ export function fmtTps(tps: number | null): string {
 
 export function fmtParams(m: Model): string {
   const b = (n: number) => (n >= 1000 ? `${(n / 1000).toFixed(1)}T` : `${n % 1 === 0 ? n : n.toFixed(n < 10 ? 1 : 0)}B`);
-  if (m.arch === "moe") return `${b(m.totalParamsB)} · ${b(m.activeParamsB)} active`;
-  if (m.activeParamsB < m.totalParamsB) return `${b(m.totalParamsB)} · ${b(m.activeParamsB)} effective`;
+  if (m.arch === "moe") return `${b(m.totalParamsB)} total, ${b(m.activeParamsB)} active`;
+  if (m.activeParamsB < m.totalParamsB) return `${b(m.totalParamsB)}, ${b(m.activeParamsB)} effective`;
   return b(m.totalParamsB);
 }
 
@@ -39,11 +39,12 @@ export const VERDICT_COLOR: Record<Verdict | "nofit", string> = {
 };
 
 export function tierLabel(e: QuantEstimate): string {
+  const gpuPct = Math.floor(e.gpuFraction * 100);
   const labels: Record<Tier, string> = {
-    "full-gpu": "Full GPU",
-    unified: "Unified memory",
-    partial: `Partial offload · ${Math.floor(e.gpuFraction * 100)}% on GPU`,
-    cpu: "CPU only",
+    "full-gpu": "All on the graphics card",
+    unified: "In unified memory",
+    partial: `Split: ${gpuPct}% graphics card, ${100 - gpuPct}% system RAM`,
+    cpu: "On the CPU and system RAM",
     "wont-fit": "Won't fit",
   };
   return labels[e.tier];

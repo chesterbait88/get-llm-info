@@ -1,49 +1,178 @@
 @import "tailwindcss";
+@import "@fontsource-variable/archivo/wdth.css";
 
+/* Tokens: see DESIGN.md. Pages use these names, never raw values. */
 @theme {
-  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-sans: "Archivo Variable", ui-sans-serif, system-ui, sans-serif;
   --font-mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
-  --color-bg: #f7f7f5;
-  --color-panel: #ffffff;
-  --color-ink: #1b1d22;
-  --color-muted: #646872;
-  --color-line: #e3e3df;
-  --color-accent: #3b5bdb;
-  --color-accent-soft: #e8ecfc;
-  --color-instant: #2b8a3e;
-  --color-comfortable: #1971c2;
-  --color-usable: #c77700;
-  --color-slow: #c92a2a;
-  --color-nofit: #868e96;
-}
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --color-bg: #121316;
-    --color-panel: #1b1d22;
-    --color-ink: #e9eaee;
-    --color-muted: #9aa0ab;
-    --color-line: #2c2f36;
-    --color-accent: #7c94f5;
-    --color-accent-soft: #232a45;
-    --color-instant: #51cf66;
-    --color-comfortable: #4dabf7;
-    --color-usable: #fcc419;
-    --color-slow: #ff6b6b;
-    --color-nofit: #868e96;
-  }
+  --color-board: #0f3d33;
+  --color-board-raised: #16503f;
+  --color-silk: #eaf0e6;
+  --color-silk-dim: #a9c2b4;
+  --color-gold: #d2ae4e;
+  --color-paper: #eef2ed;
+  --color-sheet: #fafbf8;
+  --color-ink: #1c2b26;
+  --color-muted: #566a61;
+  --color-rule: #d3dcd5;
+
+  --color-instant: #1e7a55;
+  --color-comfortable: #2c6e9e;
+  --color-usable: #9a6b05;
+  --color-slow: #b03a2e;
+  --color-nofit: #7d8a84;
 }
 
 html {
-  color-scheme: light dark;
+  color-scheme: light;
+  background: var(--color-paper);
 }
 body {
-  background: var(--color-bg);
+  background: var(--color-paper);
   color: var(--color-ink);
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.5;
+  font-variation-settings: normal;
 }
-select,
-input,
-textarea {
-  background: var(--color-panel);
-  color: var(--color-ink);
+
+/* Type roles */
+.t-title {
+  font-stretch: 125%;
+  font-weight: 800;
+  font-size: 1.75rem;
+  line-height: 2rem;
+  letter-spacing: -0.01em;
+}
+@media (min-width: 640px) {
+  .t-title {
+    font-size: 2.5rem;
+    line-height: 2.75rem;
+  }
+}
+.t-heading {
+  font-stretch: 112%;
+  font-weight: 700;
+  font-size: 1.375rem;
+  line-height: 1.75rem;
+}
+.t-figure {
+  font-stretch: 125%;
+  font-weight: 750;
+  font-size: 1.75rem;
+  line-height: 1.75rem;
+  font-variant-numeric: tabular-nums;
+}
+.t-data {
+  font-stretch: 88%;
+  font-weight: 450;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  font-variant-numeric: tabular-nums;
+}
+/* Silkscreen part designator: the part's real acronym in an outlined box. */
+.silk-label {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 3.25rem;
+  padding: 0.125rem 0.375rem;
+  border: 1.5px solid var(--color-silk);
+  border-radius: 2px;
+  color: var(--color-silk);
+  font-stretch: 125%;
+  font-weight: 700;
+  font-size: 0.8125rem;
+  line-height: 1rem;
+}
+
+/* Focus: pad gold, everywhere */
+:where(a, button, input, select, textarea, summary):focus-visible {
+  outline: 2px solid var(--color-gold);
+  outline-offset: 2px;
+}
+
+/* Board inputs */
+.board select,
+.board input[type="number"] {
+  background: var(--color-board-raised);
+  color: var(--color-silk);
+  border: 1px solid var(--color-silk-dim);
+}
+.board option,
+.board optgroup {
+  background: var(--color-board);
+  color: var(--color-silk);
+}
+
+/* Writer cursor */
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+.writer-cursor {
+  display: inline-block;
+  width: 0.55em;
+  height: 1.05em;
+  margin-left: 1px;
+  vertical-align: -0.15em;
+  background: var(--color-gold);
+  animation: blink 1s steps(1) infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .writer-cursor {
+    animation: none;
+  }
+}
+
+/* Field labels/hints adapt to the surface they sit on */
+.field-label {
+  color: var(--color-muted);
+  font-weight: 500;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
+.field-hint {
+  color: var(--color-muted);
+  font-size: 0.8125rem;
+  line-height: 1.125rem;
+}
+.board .field-label {
+  color: var(--color-silk);
+}
+.board .field-hint {
+  color: var(--color-silk-dim);
+}
+
+/* Segmented switch */
+.seg {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 2px;
+  padding: 2px;
+  border: 1px solid var(--color-rule);
+  border-radius: 4px;
+}
+.seg button {
+  padding: 0.3rem 0.75rem;
+  border-radius: 3px;
+  font-size: 0.875rem;
+  color: var(--color-muted);
+}
+.seg button[aria-checked="true"] {
+  background: var(--color-board);
+  color: var(--color-silk);
+}
+.board .seg {
+  border-color: var(--color-silk-dim);
+}
+.board .seg button {
+  color: var(--color-silk-dim);
+}
+.board .seg button[aria-checked="true"] {
+  background: var(--color-gold);
+  color: var(--color-board);
+  font-weight: 600;
 }

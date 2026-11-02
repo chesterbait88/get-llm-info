@@ -18,6 +18,7 @@
     "sync:hf": "tsx scripts/sync-hf.ts"
   },
   "dependencies": {
+    "@fontsource-variable/archivo": "^5.3.0",
     "drizzle-orm": "^0.45.4",
     "next": "^15.5.28",
     "pg": "^8.23.1",

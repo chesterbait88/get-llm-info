@@ -93,6 +93,25 @@ export const GpuSchema = z.object({
 });
 export type Gpu = z.infer<typeof GpuSchema>;
 
+export const CpuSchema = z.object({
+  id: z.string().regex(/^[a-z0-9-]+$/),
+  vendor: z.enum(["intel", "amd"]),
+  series: z.string(),
+  name: z.string(),
+  cores: z.number().int().positive(),
+  threads: z.number().int().positive(),
+  /** 64-bit memory channels the platform supports (2 = dual channel). */
+  memoryChannels: z.number().int().positive(),
+  /** Supported RAM types, preferred (default) first. */
+  ramTypes: z.array(z.enum(["ddr4", "ddr5", "lpddr5x"])).min(1),
+  /** Typical RAM speed for the preferred type, MT/s. */
+  defaultMts: z.number().int().positive(),
+  avx512: z.boolean(),
+  formFactor: z.enum(["desktop", "laptop", "workstation", "server"]),
+  source: SourceKind,
+});
+export type Cpu = z.infer<typeof CpuSchema>;
+
 export const ChipSchema = z.object({
   id: z.string().regex(/^[a-z0-9-]+$/),
   vendor: z.enum(["apple", "amd", "nvidia"]),
@@ -138,6 +157,7 @@ export type Benchmark = z.infer<typeof BenchmarkSchema>;
 export const CatalogSchema = z.object({
   models: z.array(ModelSchema),
   quants: z.array(QuantSchema),
+  cpus: z.array(CpuSchema),
   gpus: z.array(GpuSchema),
   chips: z.array(ChipSchema),
   engines: z.array(EngineSchema),

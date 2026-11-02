@@ -11,7 +11,7 @@ try {
 }
 
 const dupes = (ids: string[]) => ids.filter((id, i) => ids.indexOf(id) !== i);
-for (const [name, list] of Object.entries({ models: cat.models, gpus: cat.gpus, chips: cat.chips, engines: cat.engines, quants: cat.quants })) {
+for (const [name, list] of Object.entries({ models: cat.models, cpus: cat.cpus, gpus: cat.gpus, chips: cat.chips, engines: cat.engines, quants: cat.quants })) {
   for (const d of dupes(list.map((x) => x.id))) errors.push(`duplicate ${name} id: ${d}`);
 }
 const ids = (xs: { id: string }[]) => new Set(xs.map((x) => x.id));
@@ -36,4 +36,4 @@ if (errors.length) {
   console.error(errors.map((e) => `✗ ${e}`).join("\n"));
   process.exit(1);
 }
-console.log(`✓ Catalog OK: ${cat.models.length} models (${unverified} unverified, ${estimatedArch} with estimated architecture), ${cat.gpus.length} GPUs, ${cat.chips.length} chips, ${cat.benchmarks.length} benchmarks.`);
+console.log(`✓ Catalog OK: ${cat.models.length} models (${unverified} unverified, ${estimatedArch} with estimated architecture), ${cat.cpus.length} CPUs, ${cat.gpus.length} GPUs, ${cat.chips.length} chips, ${cat.benchmarks.length} benchmarks.`);

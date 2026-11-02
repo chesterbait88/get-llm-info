@@ -21,6 +21,12 @@ async function main() {
     for (const [i, e] of cat.engines.entries()) {
       await tx.insert(t.engines).values({ ...e, sortOrder: i }).onConflictDoUpdate({ target: t.engines.id, set: excluded(["name", "speedFactor", "platforms", "requiresFullGpu", "notes", "sortOrder"]) });
     }
+    for (const [i, c] of cat.cpus.entries()) {
+      await tx.insert(t.cpus).values({ ...c, sortOrder: i }).onConflictDoUpdate({
+        target: t.cpus.id,
+        set: excluded(["vendor", "series", "name", "cores", "threads", "memoryChannels", "ramTypes", "defaultMts", "avx512", "formFactor", "source", "sortOrder"]),
+      });
+    }
     for (const [i, g] of cat.gpus.entries()) {
       await tx.insert(t.gpus).values({ ...g, sortOrder: i }).onConflictDoUpdate({
         target: t.gpus.id,
@@ -54,7 +60,7 @@ async function main() {
   });
 
   console.log(
-    `Seeded ${cat.models.length} models, ${cat.gpus.length} GPUs, ${cat.chips.length} chips, ` +
+    `Seeded ${cat.models.length} models, ${cat.cpus.length} CPUs, ${cat.gpus.length} GPUs, ${cat.chips.length} chips, ` +
       `${cat.engines.length} engines, ${cat.quants.length} quants, ${cat.benchmarks.length} benchmarks.`,
   );
 }

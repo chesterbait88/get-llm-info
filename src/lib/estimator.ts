@@ -28,6 +28,12 @@ const CALIBRATION_CLAMP: [number, number] = [0.5, 1.5];
 
 export type Platform = "nvidia" | "amd" | "intel" | "apple" | "unified-x86" | "unified-arm" | "cpu";
 
+/** CPU facts that matter for the system-RAM side of decoding. */
+export interface CpuInfo {
+  cores: number;
+  avx512: boolean;
+}
+
 export type Hardware =
   | {
       kind: "discrete";
@@ -38,7 +44,7 @@ export type Hardware =
       bandwidthGbs: number;
       ramGb: number;
       ramBandwidthGbs: number;
-      cpuThreads?: number;
+      cpu?: CpuInfo;
     }
   | {
       kind: "unified";
@@ -47,7 +53,6 @@ export type Hardware =
       vendor: "apple" | "amd" | "nvidia";
       memoryGb: number;
       bandwidthGbs: number;
-      cpuThreads?: number;
     }
   | {
       kind: "cpu";
@@ -55,7 +60,7 @@ export type Hardware =
       name: string;
       ramGb: number;
       ramBandwidthGbs: number;
-      cpuThreads?: number;
+      cpu?: CpuInfo;
     };
 
 export type Preference = "balanced" | "quality" | "speed";
@@ -178,10 +183,15 @@ export function acceleratorEfficiency(hw: Hardware): number {
   return { nvidia: 0.65, amd: 0.55, intel: 0.45 }[hw.vendor];
 }
 
-function cpuEfficiency(hw: Hardware): number {
-  const threads = hw.cpuThreads;
-  const scale = threads && threads < 8 ? threads / 8 : 1;
-  return CPU_EFFICIENCY * scale;
+/**
+ * System-RAM side efficiency. Decode on the CPU is bandwidth-bound once there are
+ * enough cores to keep the memory bus busy (~8); fewer cores become compute-bound.
+ * AVX-512 (Zen 4/5, Xeon) gives llama.cpp's CPU kernels a small edge.
+ */
+export function cpuEfficiency(hw: Hardware): number {
+  if (hw.kind === "unified" || !hw.cpu) return CPU_EFFICIENCY;
+  const coreScale = Math.min(1, hw.cpu.cores / 8);
+  return CPU_EFFICIENCY * coreScale * (hw.cpu.avx512 ? 1.05 : 1);
 }
 
 export function verdictFor(tps: number): Verdict {
@@ -411,16 +421,21 @@ export function evaluateModel(model: Model, hw: Hardware, s: Settings, refs: Cat
   return { model, pick, all, effectiveSizeB: effectiveSizeB(model) };
 }
 
-/** Default ranking: comfortably runnable first (largest first), then slow, then won't fit. */
+/**
+ * Default ranking ("best match"): models that write at 10+ tok/s first (largest
+ * first), then merely usable ones, then slow ones, then models that won't fit
+ * (closest to fitting first).
+ */
 export function rankResults(results: ModelResult[]): ModelResult[] {
   const group = (r: ModelResult) => {
-    if (r.pick.tier === "wont-fit") return 2;
-    return r.pick.verdict === "slow" ? 1 : 0;
+    if (r.pick.tier === "wont-fit") return 3;
+    if (r.pick.verdict === "slow") return 2;
+    return r.pick.verdict === "usable" ? 1 : 0;
   };
   return [...results].sort((a, b) => {
     const g = group(a) - group(b);
     if (g) return g;
-    if (group(a) === 2) return a.pick.shortfallGb - b.pick.shortfallGb;
+    if (group(a) === 3) return a.pick.shortfallGb - b.pick.shortfallGb;
     return b.effectiveSizeB - a.effectiveSizeB;
   });
 }

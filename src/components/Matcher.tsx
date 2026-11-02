@@ -1,35 +1,37 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import type { Catalog, UseCase } from "@/lib/schema";
-import { calibrationFor, engineSupported, evaluateModel, rankResults, type ModelResult } from "@/lib/estimator";
+import { calibrationFor, engineSupported, evaluateModel, rankResults } from "@/lib/estimator";
 import { probeBrowser, suggestFromProbe, type Probe, type Suggestion } from "@/lib/detect";
 import { CONTEXT_STEPS, DEFAULT_PROFILE, fromQuery, toHardware, toQuery, toSettings, type Profile } from "@/lib/profile";
-import { fmtContext, fmtTps } from "@/lib/format";
+import { includeResults, SORT_KEYS, SORT_LABELS, sortResults } from "@/lib/sort";
+import { fmtContext } from "@/lib/format";
 import { HardwareForm } from "./HardwareForm";
+import { Writer } from "./Writer";
 import { Results } from "./Results";
 import { Accuracy } from "./Accuracy";
 import { SubmitBenchmark } from "./SubmitBenchmark";
-import { Chip, Field, Panel, Segmented, Select } from "./ui";
+import { Button, Check, Field, Segmented, Select, Tab } from "./ui";
 
-const STORAGE_KEY = "llm-matcher-profile-v1";
+const STORAGE_KEY = "llm-matcher-profile-v2";
 const USE_CASES: { value: UseCase | "all"; label: string }[] = [
-  { value: "all", label: "All" },
+  { value: "all", label: "Everything" },
   { value: "chat", label: "Chat" },
   { value: "coding", label: "Coding" },
   { value: "reasoning", label: "Reasoning" },
-  { value: "vision", label: "Vision" },
-  { value: "long-context", label: "Long context / RAG" },
-  { value: "agents", label: "Agents / tools" },
-  { value: "edge", label: "Small / edge" },
+  { value: "vision", label: "Images" },
+  { value: "long-context", label: "Long documents" },
+  { value: "agents", label: "Agents and tools" },
+  { value: "edge", label: "Small and light" },
   { value: "writing", label: "Writing" },
 ];
-type Sort = "recommended" | "speed" | "size" | "newest";
 
 function sanitize(p: Profile, cat: Catalog): Profile {
   const out = { ...p };
-  if (!cat.gpus.some((g) => g.id === out.gpuId)) Object.assign(out, { gpuId: DEFAULT_PROFILE.gpuId, vramGb: DEFAULT_PROFILE.vramGb });
+  if (!cat.gpus.some((g) => g.id === out.gpuId)) Object.assign(out, { gpuId: DEFAULT_PROFILE.gpuId, vramGb: DEFAULT_PROFILE.vramGb, vramCustom: false });
   if (!cat.chips.some((c) => c.id === out.chipId)) Object.assign(out, { chipId: DEFAULT_PROFILE.chipId, memoryGb: DEFAULT_PROFILE.memoryGb });
+  if (out.cpuId !== "other" && !cat.cpus.some((c) => c.id === out.cpuId)) out.cpuId = DEFAULT_PROFILE.cpuId;
   return out;
 }
 
@@ -39,12 +41,10 @@ export function Matcher({ catalog }: { catalog: Catalog }) {
   const [probe, setProbe] = useState<Probe | null>(null);
   const [suggestion, setSuggestion] = useState<Suggestion | null>(null);
   const [showConfirm, setShowConfirm] = useState(false);
-  const [sort, setSort] = useState<Sort>("recommended");
-  const [showNoFit, setShowNoFit] = useState(false);
-  const hardwareRef = useRef<HTMLDivElement>(null);
+  const [writerId, setWriterId] = useState<string | null>(null);
   const update = (patch: Partial<Profile>) => setProfile((p) => ({ ...p, ...patch }));
 
-  // 1. Restore from URL or localStorage, 2. run the browser probes silently.
+  // Restore from the URL or this browser, then run the hardware probes silently.
   useEffect(() => {
     let saved: Profile | null = null;
     if (window.location.search.includes("mode=")) saved = fromQuery(window.location.search);
@@ -65,13 +65,11 @@ export function Matcher({ catalog }: { catalog: Catalog }) {
       if (!saved) {
         setProfile((prev) => sanitize({ ...prev, ...s.patch }, catalog));
         setShowConfirm(true);
-      } else if (p.threads) {
-        setProfile((prev) => ({ ...prev, cpuThreads: p.threads }));
       }
     });
   }, [catalog]);
 
-  // Keep the URL shareable and remember the profile.
+  // Keep the URL shareable and remember the setup in this browser.
   useEffect(() => {
     if (!ready) return;
     const q = toQuery(profile);
@@ -88,8 +86,8 @@ export function Matcher({ catalog }: { catalog: Catalog }) {
   const availableEngines = hw ? catalog.engines.filter((e) => engineSupported(e, hw)) : [llama];
   const engine = availableEngines.find((e) => e.id === profile.engine) ?? llama;
 
-  const { runnable, noFit, calibration } = useMemo(() => {
-    if (!hw) return { runnable: [] as ModelResult[], noFit: [] as ModelResult[], calibration: { factor: 1, samples: 0 } };
+  const { all, calibration } = useMemo(() => {
+    if (!hw) return { all: [], calibration: { factor: 1, samples: 0 } };
     const settings = toSettings(profile, engine);
     const cal = calibrationFor(hw, settings, catalog, llama);
     const results = catalog.models
@@ -97,90 +95,126 @@ export function Matcher({ catalog }: { catalog: Catalog }) {
       .filter((m) => profile.use === "all" || m.useCases.includes(profile.use))
       .filter((m) => profile.license === "all" || m.licenseClass === "permissive")
       .map((m) => evaluateModel(m, hw, settings, catalog, cal.factor));
-    let ranked = rankResults(results);
-    const fits = (r: ModelResult) => r.pick.tier !== "wont-fit";
-    if (sort === "speed") ranked = [...ranked].sort((a, b) => (b.pick.tps ?? -1) - (a.pick.tps ?? -1));
-    if (sort === "size") ranked = [...ranked].sort((a, b) => b.model.totalParamsB - a.model.totalParamsB);
-    if (sort === "newest") ranked = [...ranked].sort((a, b) => (b.model.releaseDate ?? "").localeCompare(a.model.releaseDate ?? ""));
-    return { runnable: ranked.filter(fits), noFit: ranked.filter((r) => !fits(r)), calibration: cal };
-  }, [hw, profile, engine, catalog, llama, sort]);
+    return { all: results, calibration: cal };
+  }, [hw, profile, engine, catalog, llama]);
 
-  const comfy = runnable.filter((r) => r.pick.verdict && r.pick.verdict !== "slow" && r.pick.verdict !== "usable");
-  const best = runnable.find((r) => r.pick.verdict !== "slow");
+  const shown = useMemo(() => sortResults(includeResults(all, profile), profile.sort, profile.dir), [all, profile]);
+  const slowCount = all.filter((r) => r.pick.tier !== "wont-fit" && r.pick.verdict === "slow").length;
+  const noFitCount = all.filter((r) => r.pick.tier === "wont-fit").length;
+  const runnable = all.length - noFitCount;
+  const best = rankResults(all).find((r) => r.pick.tier !== "wont-fit" && r.pick.verdict !== "slow") ?? null;
+  const writerResult = all.find((r) => r.model.id === writerId && r.pick.tier !== "wont-fit") ?? best;
+  const machineName = hw?.name ?? "your machine";
+  const sortMeta = SORT_LABELS[profile.sort];
 
   return (
-    <main className="mx-auto flex max-w-5xl flex-col gap-4 px-4 py-6 sm:py-10">
-      <header className="flex flex-col gap-1">
-        <h1 className="text-2xl font-bold sm:text-3xl">Which open models can my machine run?</h1>
-        <p className="text-[var(--color-muted)]">Ranked local LLMs for your hardware, with the best quantization that fits and how fast each one writes.</p>
+    <main className="mx-auto flex max-w-[1100px] flex-col gap-12 px-4 pb-16 pt-8 sm:pt-14">
+      <header className="flex max-w-[44rem] flex-col gap-3">
+        <h1 className="t-title text-board">Which open models will your machine run, and how fast?</h1>
+        <p className="max-w-[60ch] text-[17px] text-muted">
+          Fill in your parts. Every model is checked for fit and given the best quantization it can use, plus how many tokens a second it will write.
+        </p>
       </header>
 
-      {showConfirm && suggestion && (
-        <ConfirmCard
-          suggestion={suggestion}
-          probe={probe}
-          profile={profile}
-          update={update}
-          catalog={catalog}
-          onConfirm={() => setShowConfirm(false)}
-          onEdit={() => {
-            setShowConfirm(false);
-            hardwareRef.current?.scrollIntoView({ behavior: "smooth" });
-          }}
-        />
-      )}
-
-      <div ref={hardwareRef}>
-        <Panel>
-          <h2 className="mb-3 font-semibold">Your hardware</h2>
-          <HardwareForm profile={profile} update={update} catalog={catalog} highlightCard={suggestion?.confidence === "family" && profile.mode === "pc"} />
-        </Panel>
+      <div className="flex flex-col gap-4">
+        {showConfirm && suggestion && (
+          <ConfirmCard
+            suggestion={suggestion}
+            probe={probe}
+            profile={profile}
+            update={update}
+            catalog={catalog}
+            onDone={() => setShowConfirm(false)}
+          />
+        )}
+        <HardwareForm profile={profile} update={update} catalog={catalog} detectedThreads={probe?.threads ?? null} />
       </div>
 
-      <Panel>
-        <div className="flex flex-col gap-4">
-          <div className="flex flex-wrap gap-1.5">
-            {USE_CASES.map((u) => (
-              <Chip key={u.value} active={profile.use === u.value} onClick={() => update({ use: u.value })}>
-                {u.label}
-              </Chip>
-            ))}
+      <section aria-labelledby="preview-title" className="flex flex-col gap-3">
+        <h2 id="preview-title" className="t-heading text-board">
+          {writerResult && writerResult !== best ? "Speed preview" : "Your best match, writing at its real speed"}
+        </h2>
+        <Writer result={writerResult} machine={machineName} />
+      </section>
+
+      <section aria-labelledby="results-title" className="flex flex-col gap-6">
+        <div className="flex flex-col gap-2">
+          <h2 id="results-title" className="t-heading text-board">
+            Models for your machine
+          </h2>
+          <p className="max-w-[68ch] text-[15px] text-muted">
+            {runnable} of {all.length} run on {machineName}.{" "}
+            {calibration.samples > 0 && `Estimates here are tuned to ${calibration.samples} measured run${calibration.samples > 1 ? "s" : ""} on this chip. `}
+            A circle on the ruler is an estimate with its likely range, a diamond is a measured result. The ticks mark 5, 10 and 30 tokens a second.
+          </p>
+        </div>
+
+        <div className="flex flex-wrap gap-x-5 gap-y-2" role="group" aria-label="Use case">
+          {USE_CASES.map((u) => (
+            <Tab key={u.value} active={profile.use === u.value} onClick={() => update({ use: u.value })}>
+              {u.label}
+            </Tab>
+          ))}
+        </div>
+
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-[14rem_auto_minmax(0,1fr)] md:items-end">
+          <Field label="Sort by">
+            <Select value={profile.sort} onChange={(sort) => update({ sort, dir: SORT_LABELS[sort].natural })} options={SORT_KEYS.map((k) => ({ value: k, label: SORT_LABELS[k].label }))} />
+          </Field>
+          <div className="flex flex-col gap-1">
+            <span className="field-label">Order</span>
+            <Segmented
+              ariaLabel="Sort order"
+              value={profile.dir}
+              onChange={(dir) => update({ dir })}
+              options={[
+                { value: "desc", label: sortMeta.desc },
+                { value: "asc", label: sortMeta.asc },
+              ]}
+            />
           </div>
-          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
-            <Field label="Engine" hint={engine.notes.split(".")[0] + "."}>
+          <fieldset className="flex flex-col gap-1">
+            <legend className="field-label mb-1">Also show</legend>
+            <div className="flex flex-wrap gap-x-6 gap-y-1">
+              <Check checked={profile.showSlow} onChange={(showSlow) => update({ showSlow })}>
+                Too slow, under 5 tok/s ({slowCount})
+              </Check>
+              <Check checked={profile.showNoFit} onChange={(showNoFit) => update({ showNoFit })}>
+                Won&apos;t fit ({noFitCount})
+              </Check>
+            </div>
+          </fieldset>
+        </div>
+
+        <details className="group border-y border-rule py-3">
+          <summary className="cursor-pointer text-[15px] font-medium text-board">
+            Engine, context and quality settings
+            <span className="ml-2 font-normal text-muted">
+              {engine.name}, {fmtContext(profile.ctx)} context, {profile.pref === "balanced" ? "balanced quality" : profile.pref === "speed" ? "fastest quantization" : "best quality"}
+            </span>
+          </summary>
+          <div className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            <Field label="Engine" hint={engine.notes.split(". ")[0] + "."}>
               <Select value={engine.id} onChange={(id) => update({ engine: id })} options={availableEngines.map((e) => ({ value: e.id, label: e.name }))} />
             </Field>
-            <Field label="Context window" hint="KV cache is reserved for the full window">
+            <Field label="Context window" hint="Memory for the whole window is reserved up front.">
               <Select value={profile.ctx} onChange={(ctx) => update({ ctx })} options={CONTEXT_STEPS.map((c) => ({ value: c, label: `${fmtContext(c)} tokens` }))} />
             </Field>
-            <Field label="KV cache precision">
+            <Field label="Context memory precision" hint="Lower precision fits longer contexts.">
               <Select
                 value={profile.kv}
                 onChange={(kv) => update({ kv })}
                 options={[
-                  { value: "f16", label: "F16 (default)" },
-                  { value: "q8", label: "Q8_0 (half the memory)" },
-                  { value: "q4", label: "Q4_0 (quarter)" },
+                  { value: "f16", label: "Full (F16)" },
+                  { value: "q8", label: "Half (Q8)" },
+                  { value: "q4", label: "Quarter (Q4)" },
                 ]}
               />
             </Field>
-            <Field label="Sort">
-              <Select
-                value={sort}
-                onChange={setSort}
-                options={[
-                  { value: "recommended", label: "Recommended" },
-                  { value: "speed", label: "Fastest" },
-                  { value: "size", label: "Largest" },
-                  { value: "newest", label: "Newest" },
-                ]}
-              />
-            </Field>
-          </div>
-          <div className="flex flex-wrap items-center gap-x-6 gap-y-3 text-sm">
-            <div className="flex items-center gap-2">
-              <span className="text-[var(--color-muted)]">Quant</span>
+            <div className="flex flex-col gap-1">
+              <span className="field-label">Quantization to pick</span>
               <Segmented
+                ariaLabel="Quantization preference"
                 value={profile.pref}
                 onChange={(pref) => update({ pref })}
                 options={[
@@ -190,64 +224,42 @@ export function Matcher({ catalog }: { catalog: Catalog }) {
                 ]}
               />
             </div>
-            <div className="flex items-center gap-2">
-              <span className="text-[var(--color-muted)]">Licence</span>
+            <div className="flex flex-col gap-1">
+              <span className="field-label">Licence</span>
               <Segmented
+                ariaLabel="Licence"
                 value={profile.license}
                 onChange={(license) => update({ license })}
                 options={[
                   { value: "all", label: "Any" },
-                  { value: "permissive", label: "Permissive only" },
+                  { value: "permissive", label: "OK for commercial use" },
                 ]}
               />
             </div>
-            <label className="flex items-center gap-2 text-[var(--color-muted)]">
-              <input type="checkbox" checked={profile.legacy} onChange={(e) => update({ legacy: e.target.checked })} />
-              Show older / reference models
-            </label>
-          </div>
-        </div>
-      </Panel>
-
-      {hw && (
-        <p className="text-sm text-[var(--color-muted)]">
-          <strong className="text-[var(--color-ink)]">{runnable.length}</strong> models run on {hw.name}
-          {comfy.length > 0 && (
-            <>
-              , <strong className="text-[var(--color-ink)]">{comfy.length}</strong> at 10+ tok/s
-            </>
-          )}
-          {best && (
-            <>
-              . Most capable at a usable speed: <strong className="text-[var(--color-ink)]">{best.model.name}</strong> ({best.pick.quant}, ~{fmtTps(best.pick.tps)} tok/s)
-            </>
-          )}
-          {calibration.samples > 0 && <> · estimates calibrated from {calibration.samples} measured run{calibration.samples > 1 ? "s" : ""} on this device</>}.
-        </p>
-      )}
-
-      <Results results={runnable} calibrationSamples={calibration.samples} requestedCtx={profile.ctx} />
-
-      {noFit.length > 0 && (
-        <div>
-          <button type="button" className="text-sm text-[var(--color-accent)] underline" onClick={() => setShowNoFit(!showNoFit)}>
-            {showNoFit ? "Hide" : "Show"} {noFit.length} model{noFit.length > 1 ? "s" : ""} that won&apos;t fit
-          </button>
-          {showNoFit && (
-            <div className="mt-2">
-              <Results results={noFit} calibrationSamples={0} requestedCtx={profile.ctx} />
+            <div className="flex items-end">
+              <Check checked={profile.legacy} onChange={(legacy) => update({ legacy })}>
+                Include older reference models
+              </Check>
             </div>
-          )}
-        </div>
-      )}
+          </div>
+        </details>
 
-      <Accuracy catalog={catalog} />
-      <SubmitBenchmark catalog={catalog} profile={profile} />
+        <Results results={shown} calibrated={calibration.samples > 0} requestedCtx={profile.ctx} writerId={writerResult?.model.id ?? null} onWatch={(id) => {
+          setWriterId(id);
+          document.getElementById("preview-title")?.scrollIntoView({ behavior: "smooth", block: "start" });
+        }} />
+      </section>
 
-      <footer className="pt-4 text-xs leading-relaxed text-[var(--color-muted)]">
+      <section className="flex flex-col gap-4">
+        <Accuracy catalog={catalog} />
+        <SubmitBenchmark catalog={catalog} profile={profile} />
+      </section>
+
+      <footer className="max-w-[68ch] text-sm text-muted">
         <p>
-          <strong>How it works.</strong> Output speed is limited by memory bandwidth: each token reads the model&apos;s active weights once, so tok/s ≈ bandwidth × efficiency ÷ bytes per token, plus a small per-layer overhead that matters for
-          mixture-of-experts models. Memory needed = weights + KV cache + ~1 GB runtime. Measured numbers replace estimates wherever we have them. Verdicts: &gt;30 tok/s instant, 10–30 comfortable, 5–10 usable, &lt;5 slow.
+          How the numbers work: writing speed is limited by memory bandwidth, because every token reads the model&apos;s active weights once. So tokens a second is
+          roughly bandwidth times efficiency, divided by the bytes read per token, plus a small cost per layer that matters for mixture-of-experts models. Memory
+          needed is the weights, plus the context, plus about 1 GB for the runtime. Measured results replace estimates wherever we have them.
         </p>
       </footer>
     </main>
@@ -260,60 +272,50 @@ function ConfirmCard({
   profile,
   update,
   catalog,
-  onConfirm,
-  onEdit,
+  onDone,
 }: {
   suggestion: Suggestion;
   probe: Probe | null;
   profile: Profile;
   update: (p: Partial<Profile>) => void;
   catalog: Catalog;
-  onConfirm: () => void;
-  onEdit: () => void;
+  onDone: () => void;
 }) {
   const chip = catalog.chips.find((c) => c.id === profile.chipId);
   return (
-    <div className="rounded-xl border border-[var(--color-accent)] bg-[var(--color-accent-soft)] p-4">
+    <div className="border-l-4 border-gold bg-sheet px-5 py-4">
       {suggestion.confidence === "none" ? (
-        <p>We couldn&apos;t detect your GPU from the browser. Pick your hardware below.</p>
+        <p>Your browser didn&apos;t say which graphics card you have. Pick your parts on the board below.</p>
       ) : (
-        <p>
-          We think you have <strong>{suggestion.summary}</strong>
-          {probe?.threads ? ` and a ${probe.threads}-thread CPU` : ""}. Correct?
+        <p className="text-[17px]">
+          Your browser says this is <strong>{suggestion.summary}</strong>. Check the processor and RAM below; browsers can&apos;t see those.
         </p>
       )}
       {suggestion.alternatives.length > 0 && (
-        <div className="mt-2 flex flex-wrap items-center gap-2 text-sm">
-          <span>Or is it:</span>
+        <p className="mt-2 text-[15px]">
+          Same name, different version:{" "}
           {suggestion.alternatives.map((a) => (
-            <button key={a.id} type="button" className="underline" onClick={() => update({ chipId: a.id })}>
+            <button key={a.id} type="button" className="font-medium text-board underline underline-offset-2" onClick={() => update({ chipId: a.id })}>
               {a.name}
             </button>
           ))}
-        </div>
+        </p>
       )}
-      <div className="mt-3 flex flex-wrap items-end gap-3 text-sm">
+      <div className="mt-3 flex flex-wrap items-end gap-3">
         {profile.mode === "unified" && chip ? (
-          <label className="flex items-center gap-2">
-            Memory:
-            <span className="w-28">
+          <div className="w-32">
+            <Field label="Memory">
               <Select value={profile.memoryGb} onChange={(memoryGb) => update({ memoryGb })} options={chip.memoryOptionsGb.map((m) => ({ value: m, label: `${m} GB` }))} />
-            </span>
-          </label>
+            </Field>
+          </div>
         ) : (
-          <label className="flex items-center gap-2">
-            Browsers can&apos;t see your RAM{probe?.deviceMemoryGb ? ` (it reports “${probe.deviceMemoryGb}+ GB”)` : ""}. How much?
-            <span className="w-28">
+          <div className="w-40">
+            <Field label="RAM" hint={probe?.deviceMemoryGb ? `Browser shows at least ${probe.deviceMemoryGb} GB` : undefined}>
               <Select value={profile.ramGb} onChange={(ramGb) => update({ ramGb })} options={[8, 16, 24, 32, 48, 64, 96, 128, 192, 256].map((r) => ({ value: r, label: `${r} GB` }))} />
-            </span>
-          </label>
+            </Field>
+          </div>
         )}
-        <button type="button" className="rounded-md bg-[var(--color-accent)] px-3 py-1.5 text-white" onClick={onConfirm}>
-          Looks right
-        </button>
-        <button type="button" className="rounded-md border border-[var(--color-accent)] px-3 py-1.5 text-[var(--color-accent)]" onClick={onEdit}>
-          Edit hardware
-        </button>
+        <Button onClick={onDone}>That&apos;s right</Button>
       </div>
     </div>
   );

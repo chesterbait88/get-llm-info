@@ -8,9 +8,10 @@ import * as t from "./schema";
  * Zod so a bad row fails loudly on the server instead of silently in the UI.
  */
 export async function getCatalog(db: Db): Promise<Catalog> {
-  const [models, quants, gpus, chips, engines, benchmarks] = await Promise.all([
+  const [models, quants, cpus, gpus, chips, engines, benchmarks] = await Promise.all([
     db.select().from(t.models).where(eq(t.models.status, "approved")).orderBy(asc(t.models.totalParamsB)),
     db.select().from(t.quants).orderBy(asc(t.quants.bitsPerWeight)),
+    db.select().from(t.cpus).orderBy(asc(t.cpus.sortOrder)),
     db.select().from(t.gpus).orderBy(asc(t.gpus.sortOrder)),
     db.select().from(t.chips).orderBy(asc(t.chips.sortOrder)),
     db.select().from(t.engines).orderBy(asc(t.engines.sortOrder)),
@@ -20,6 +21,7 @@ export async function getCatalog(db: Db): Promise<Catalog> {
   return CatalogSchema.parse({
     models: models.map(({ status, createdAt, updatedAt, note, ...m }) => ({ ...m, ...(note ? { note } : {}) })),
     quants,
+    cpus: cpus.map(({ sortOrder, ...c }) => c),
     gpus: gpus.map(({ sortOrder, ...g }) => g),
     chips: chips.map(({ sortOrder, ...c }) => c),
     engines: engines.map(({ sortOrder, ...e }) => e),

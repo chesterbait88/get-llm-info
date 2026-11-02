@@ -2,60 +2,50 @@
 
 import { useState, type ReactNode } from "react";
 
-export function Panel({ children, className = "" }: { children: ReactNode; className?: string }) {
-  return <section className={`rounded-xl border border-[var(--color-line)] bg-[var(--color-panel)] p-4 sm:p-5 ${className}`}>{children}</section>;
-}
-
-export function Field({ label, children, hint }: { label: string; children: ReactNode; hint?: string }) {
+export function Field({ label, children, hint, className = "" }: { label: string; children: ReactNode; hint?: ReactNode; className?: string }) {
   return (
-    <label className="flex min-w-0 flex-col gap-1 text-sm">
-      <span className="font-medium text-[var(--color-muted)]">{label}</span>
+    <label className={`flex min-w-0 flex-col gap-1 ${className}`}>
+      <span className="field-label">{label}</span>
       {children}
-      {hint && <span className="text-xs text-[var(--color-muted)]">{hint}</span>}
+      {hint && <span className="field-hint">{hint}</span>}
     </label>
   );
 }
 
-const inputCls =
-  "w-full rounded-md border border-[var(--color-line)] px-2.5 py-1.5 text-sm outline-none focus:border-[var(--color-accent)] focus:ring-2 focus:ring-[var(--color-accent-soft)]";
+export const inputClass = "w-full rounded-[4px] border border-rule bg-sheet px-2.5 py-1.5 text-[15px] text-ink";
+
+type Opt<T> = { value: T; label: string; disabled?: boolean };
+type Group<T> = { group: string; options: Opt<T>[] };
 
 export function Select<T extends string | number>({
   value,
   onChange,
   options,
-  highlight,
   ariaLabel,
+  className = "",
 }: {
   value: T;
   onChange: (v: T) => void;
-  options: { value: T; label: string; disabled?: boolean }[] | { group: string; options: { value: T; label: string }[] }[];
-  highlight?: boolean;
+  options: Opt<T>[] | Group<T>[];
   ariaLabel?: string;
+  className?: string;
 }) {
-  const isGrouped = options.length > 0 && "group" in options[0];
+  const grouped = options.length > 0 && "group" in options[0];
   const parse = (raw: string) => (typeof value === "number" ? (Number(raw) as T) : (raw as T));
+  const opt = (o: Opt<T>) => (
+    <option key={String(o.value)} value={String(o.value)} disabled={o.disabled}>
+      {o.label}
+    </option>
+  );
   return (
-    <select
-      aria-label={ariaLabel}
-      className={`${inputCls} ${highlight ? "border-[var(--color-accent)] ring-2 ring-[var(--color-accent-soft)]" : ""}`}
-      value={String(value)}
-      onChange={(e) => onChange(parse(e.target.value))}
-    >
-      {isGrouped
-        ? (options as { group: string; options: { value: T; label: string }[] }[]).map((g) => (
+    <select aria-label={ariaLabel} className={`${inputClass} ${className}`} value={String(value)} onChange={(e) => onChange(parse(e.target.value))}>
+      {grouped
+        ? (options as Group<T>[]).map((g) => (
             <optgroup key={g.group} label={g.group}>
-              {g.options.map((o) => (
-                <option key={String(o.value)} value={String(o.value)}>
-                  {o.label}
-                </option>
-              ))}
+              {g.options.map(opt)}
             </optgroup>
           ))
-        : (options as { value: T; label: string; disabled?: boolean }[]).map((o) => (
-            <option key={String(o.value)} value={String(o.value)} disabled={o.disabled}>
-              {o.label}
-            </option>
-          ))}
+        : (options as Opt<T>[]).map(opt)}
     </select>
   );
 }
@@ -65,7 +55,8 @@ export function NumberInput({ value, onChange, min, max, step = 1, ariaLabel }: 
     <input
       aria-label={ariaLabel}
       type="number"
-      className={inputCls}
+      inputMode="decimal"
+      className={`${inputClass} tabular-nums`}
       value={value}
       min={min}
       max={max}
@@ -78,20 +69,11 @@ export function NumberInput({ value, onChange, min, max, step = 1, ariaLabel }: 
   );
 }
 
-export function Segmented<T extends string>({ value, onChange, options }: { value: T; onChange: (v: T) => void; options: { value: T; label: string }[] }) {
+export function Segmented<T extends string>({ value, onChange, options, ariaLabel }: { value: T; onChange: (v: T) => void; options: { value: T; label: string }[]; ariaLabel?: string }) {
   return (
-    <div className="inline-flex flex-wrap rounded-lg border border-[var(--color-line)] p-0.5" role="radiogroup">
+    <div className="seg" role="radiogroup" aria-label={ariaLabel}>
       {options.map((o) => (
-        <button
-          key={o.value}
-          type="button"
-          role="radio"
-          aria-checked={value === o.value}
-          onClick={() => onChange(o.value)}
-          className={`rounded-md px-3 py-1.5 text-sm transition ${
-            value === o.value ? "bg-[var(--color-accent)] text-white" : "text-[var(--color-muted)] hover:text-[var(--color-ink)]"
-          }`}
-        >
+        <button key={o.value} type="button" role="radio" aria-checked={value === o.value} onClick={() => onChange(o.value)}>
           {o.label}
         </button>
       ))}
@@ -99,28 +81,39 @@ export function Segmented<T extends string>({ value, onChange, options }: { valu
   );
 }
 
-export function Chip({ active, onClick, children }: { active: boolean; onClick: () => void; children: ReactNode }) {
+/** Use-case toggle: plain text, underlined in board green when selected. */
+export function Tab({ active, onClick, children }: { active: boolean; onClick: () => void; children: ReactNode }) {
   return (
     <button
       type="button"
       aria-pressed={active}
       onClick={onClick}
-      className={`rounded-full border px-3 py-1 text-sm transition ${
-        active
-          ? "border-[var(--color-accent)] bg-[var(--color-accent-soft)] text-[var(--color-accent)]"
-          : "border-[var(--color-line)] text-[var(--color-muted)] hover:text-[var(--color-ink)]"
-      }`}
+      className={`border-b-2 pb-1 text-[15px] ${active ? "border-board font-semibold text-board" : "border-transparent text-muted hover:text-ink"}`}
     >
       {children}
     </button>
   );
 }
 
-export function Tag({ children, title }: { children: ReactNode; title?: string }) {
+export function Check({ checked, onChange, children }: { checked: boolean; onChange: (v: boolean) => void; children: ReactNode }) {
   return (
-    <span title={title} className="rounded border border-[var(--color-line)] px-1.5 py-0.5 text-[11px] leading-none text-[var(--color-muted)]">
+    <label className="inline-flex cursor-pointer items-start gap-2 text-[15px]">
+      <input type="checkbox" className="mt-1 h-4 w-4 accent-[var(--color-board)]" checked={checked} onChange={(e) => onChange(e.target.checked)} />
+      <span>{children}</span>
+    </label>
+  );
+}
+
+export function Button({ children, onClick, variant = "primary", type = "button", disabled }: { children: ReactNode; onClick?: () => void; variant?: "primary" | "secondary" | "quiet"; type?: "button" | "submit"; disabled?: boolean }) {
+  const styles = {
+    primary: "bg-board text-silk hover:bg-board-raised",
+    secondary: "border border-board text-board hover:bg-sheet",
+    quiet: "text-board underline underline-offset-2",
+  }[variant];
+  return (
+    <button type={type} disabled={disabled} onClick={onClick} className={`rounded-[4px] px-3.5 py-1.5 text-[15px] font-medium disabled:opacity-50 ${styles}`}>
       {children}
-    </span>
+    </button>
   );
 }
 
@@ -129,7 +122,7 @@ export function CopyButton({ text }: { text: string }) {
   return (
     <button
       type="button"
-      className="rounded border border-[var(--color-line)] px-2 py-0.5 text-xs text-[var(--color-muted)] hover:text-[var(--color-ink)]"
+      className="rounded-[4px] border border-rule px-2 py-0.5 text-sm text-muted hover:text-ink"
       onClick={async () => {
         try {
           await navigator.clipboard.writeText(text);
@@ -144,5 +137,3 @@ export function CopyButton({ text }: { text: string }) {
     </button>
   );
 }
-
-export const inputClass = inputCls;

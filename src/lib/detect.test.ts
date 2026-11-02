@@ -12,7 +12,8 @@ describe("suggestFromProbe", () => {
       cat,
     );
     expect(s.confidence).toBe("exact");
-    expect(s.patch).toMatchObject({ mode: "pc", gpuId: "nvidia-rtx-4070", vramGb: 12, cpuThreads: 16 });
+    expect(s.patch).toMatchObject({ mode: "pc", gpuId: "nvidia-rtx-4070", vramGb: 12 });
+    expect(s.threads).toBe(16);
   });
   it("Chrome on an Apple Silicon Mac pre-fills the chip", () => {
     const s = suggestFromProbe(

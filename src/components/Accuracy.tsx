@@ -32,16 +32,19 @@ export function Accuracy({ catalog }: { catalog: Catalog }) {
   const mape = rows.reduce((s, r) => s + Math.abs(r.err), 0) / rows.length;
 
   return (
-    <details className="rounded-xl border border-[var(--color-line)] bg-[var(--color-panel)] p-4 sm:p-5">
-      <summary className="cursor-pointer font-semibold">
-        How accurate are the estimates? <span className="font-normal text-[var(--color-muted)]">· mean error {(mape * 100).toFixed(0)}% across {rows.length} measured runs</span>
+    <details className="border-t border-rule pt-4">
+      <summary className="cursor-pointer text-[17px] font-semibold text-board">
+        How accurate are the estimates?{" "}
+        <span className="font-normal text-muted">
+          Off by {(mape * 100).toFixed(0)}% on average across {rows.length} measured runs.
+        </span>
       </summary>
-      <p className="mt-2 text-sm text-[var(--color-muted)]">
-        Raw formula vs. measured llama.cpp output speed. On devices with measurements, estimates for other models are scaled by this gap (“calibrated”). Rows marked * were transcribed from the source and are pending re-check.
+      <p className="mt-2 text-sm text-muted">
+        The plain formula next to measured llama.cpp results. On chips with measurements, estimates for every other model are adjusted by this gap. Results marked * were copied from the source and haven&apos;t been re-checked.
       </p>
       <div className="mt-3 overflow-x-auto">
-        <table className="w-full min-w-[480px] text-left text-sm">
-          <thead className="text-xs text-[var(--color-muted)]">
+        <table className="t-data w-full min-w-[480px] text-left">
+          <thead className="text-xs text-muted">
             <tr>
               <th className="py-1 pr-3 font-medium">Hardware</th>
               <th className="py-1 pr-3 font-medium">Model</th>
@@ -52,7 +55,7 @@ export function Accuracy({ catalog }: { catalog: Catalog }) {
           </thead>
           <tbody>
             {rows.map(({ b, hw, model, est, err }) => (
-              <tr key={`${b.hardwareId}-${b.modelId}-${b.quant}`} className="border-t border-[var(--color-line)]">
+              <tr key={`${b.hardwareId}-${b.modelId}-${b.quant}`} className="border-t border-rule">
                 <td className="py-1 pr-3">{hw.name}</td>
                 <td className="py-1 pr-3">
                   {model.name} {b.quant}

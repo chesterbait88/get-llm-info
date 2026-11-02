@@ -88,6 +88,22 @@ export const gpus = pgTable("gpus", {
   sortOrder: integer("sort_order").notNull().default(0),
 });
 
+export const cpus = pgTable("cpus", {
+  id: text("id").primaryKey(),
+  vendor: text("vendor", { enum: ["intel", "amd"] }).notNull(),
+  series: text("series").notNull(),
+  name: text("name").notNull(),
+  cores: integer("cores").notNull(),
+  threads: integer("threads").notNull(),
+  memoryChannels: integer("memory_channels").notNull(),
+  ramTypes: text("ram_types").array().notNull(),
+  defaultMts: integer("default_mts").notNull(),
+  avx512: boolean("avx512").notNull(),
+  formFactor: text("form_factor", { enum: ["desktop", "laptop", "workstation", "server"] }).notNull(),
+  source: text("source", { enum: ["config", "brief", "estimated"] }).notNull(),
+  sortOrder: integer("sort_order").notNull().default(0),
+});
+
 export const chips = pgTable("unified_chips", {
   id: text("id").primaryKey(),
   vendor: text("vendor", { enum: ["apple", "amd", "nvidia"] }).notNull(),

@@ -110,6 +110,12 @@ describe("fit tiers", () => {
     expect(e.tps!).toBeGreaterThan(5);
     expect(e.tps!).toBeLessThan(15);
   });
+  it("a CPU with few cores decodes slower than one that saturates the memory bus", () => {
+    const base = { kind: "cpu" as const, id: "cpu" as const, name: "CPU", ramGb: 32, ramBandwidthGbs: ramBandwidthGbs(6000, 2) };
+    const four = estimate(model("llama-3.1-8b"), quant("Q4_K_M"), { ...base, cpu: { cores: 4, avx512: false } }, settings()).tps!;
+    const sixteen = estimate(model("llama-3.1-8b"), quant("Q4_K_M"), { ...base, cpu: { cores: 16, avx512: true } }, settings()).tps!;
+    expect(sixteen).toBeGreaterThan(four * 1.5);
+  });
   it("caps context at the model's native window", () => {
     const e = estimate(model("phi-4"), quant("Q4_K_M"), pc("nvidia-rtx-4090"), settings({ contextTokens: 131072 }));
     expect(e.contextTokens).toBe(16384);
@@ -163,5 +169,16 @@ describe("squeeze quants", () => {
     expect(q4.tier).toBe("partial");
     expect(r.pick.quant).toBe("Q3_K_M");
     expect(r.pick.tier).toBe("full-gpu");
+  });
+});
+
+describe("rankResults", () => {
+  it("prefers a model at 10+ tok/s over a bigger one that is only usable", async () => {
+    const { rankResults } = await import("./estimator");
+    const hw = pc("nvidia-rtx-4070", 32, 6000);
+    const ranked = rankResults(cat.models.map((m) => evaluateModel(m, hw, settings(), cat)));
+    const top = ranked[0].pick;
+    expect(top.tier).not.toBe("wont-fit");
+    expect(top.tps!).toBeGreaterThanOrEqual(10);
   });
 });
